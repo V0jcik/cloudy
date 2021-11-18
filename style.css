@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
+
+:root{
+  --bracket: #d65dc2;
+}
+/* anim 	&#xf053; */
+@keyframes site-anim{
+  0%{
+    background-position: top left;
+  }
+  25%{
+    background-position: bottom right;
+  }
+  50%{
+    background-position: center;
+  }
+  75%{
+    background-position: top right;
+  }
+  90%{
+    background-position: bottom left;
+  }
+  100%{
+    background-position: top left;
+  }
+
+}
+@keyframes bg-anim{
+  0%{
+    background-image: url(gallery/ren4.0.png);
+  }
+  20%{
+    background-image: url(gallery/ren4.1.png);
+  }
+  40%{
+    background-image: url(gallery/ren4.2.png);
+  }
+  60%{
+    background-image: url(gallery/ren4.3.png);
+  }
+  80%{
+    background-image: url(gallery/ren4.4.png);
+  }
+  100%{
+    background-image: url(gallery/ren4.0.png);
+  }
+}
+
+body{
+  background-image: url(gallery/bg-site.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 200%;
+  animation: site-anim 900s infinite linear; 
+}
+a{
+  font-family: 'Roboto Mono', monospace !important;
+}
+.nav ul, li{
+  display: inline;
+}
+a:visited, a:link{
+  text-decoration: none;
+}
+.container{
+  position: relative;
+  border-radius: 18px;
+  margin-top: 100px;
+  width: 1200px;
+  min-height: 100px;
+  padding: 2.5vh;
+  padding-left: 4vh;
+  background-color: rgba(255, 255, 255, 0.883);
+}
+.moduser::after{
+  content: 'USER';
+  color: green;
+}
+.moduser::before{
+  content: 'MOD';
+  color: red;
+}
+.mod::after{
+  content: 'MOD';
+  color: red;
+}
+.user::after{
+  content: 'USER';
+  color: green;
+}
+.admin::after{
+  content: 'ADMIN';
+  color: darkcyan;
+}
+table span:first-of-type::after{
+  font-weight: bold;
+  content: ']';
+  color: var(--bracket);
+}
+table span:last-of-type::after{
+  font-weight: bold;
+  content: ']';
+  color: var(--bracket);
+}
+table span:first-of-type::before{
+  font-weight: bold;
+  content: '[';
+  color: var(--bracket);
+}
+table span:last-of-type::before{
+  font-weight: bold;
+  content: '[';
+  color: var(--bracket);
+}
+th{
+  text-align: center;
+}
+table > *{
+  font-size: 1.7rem;
+}
+tr td{
+  font-size: 75% !important;
+}
+.rengar{
+  float: right;
+  height: 300px;
+  width: 300px;
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  animation: bg-anim 10s infinite linear;
+}
+.navbar-brand img{
+  height: 40px !important;
+  background-color: rgba(255, 255, 255, 0.356);
+  border-radius: 50%;
+  box-shadow: white 0 0 1em 0.01em;
+}
+/* .container-fluid span img{
+  height: 30px;
+} */
