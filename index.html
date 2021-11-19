@@ -22,7 +22,7 @@
             <a class="nav-link active" aria-current="page" href="index.html">Główna</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle disabled" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Komendy
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -42,19 +42,21 @@
   <div class="container">
     <div class="header">
       <span class="h1">VojBot</span>
-      <span class="fs-4"> to chat bot, odpowiada na zadane mu komendy. Lecz potrafi też samodzielnie działać, na przykład skanować wiadomości wysyłane na chacie. Przykładem mogą być słowa obraźliwe które wykrywa i banuje autora takowej wiadomości na określony czas.
-      <br><br>
-      Bot posiada za równo komendy dla Moderatorów (osób z uprawnieniami zarządzania chatem) jak i komendy dla Użytkowników, którzy mogą wchodzić z nim w interakcję.</span>
+      <span class="fs-4">to chat bot, odpowiada na komendy. Lecz potrafi też samodzielnie działać, na przykład skanować wiadomości wysyłane na chacie. Przykładem mogą być słowa obraźliwe które wykrywa i wyłącza możliwość interakcji na określony czas. </span>
     </div>
-    <div class="row my-5">
-      <div class="chatarea col-md-8">
+    <div class="row">
+      <div class="chatarea col-md-7">
         <span class="h1">Chat</span> <br>
-        <div class="chat overflow-auto" id="chat">
-          <p></p>
-        </div>
-        <input type="text" id="name" placeholder="!hi">
+          <div class="chat" id="chat">
+            <p></p>
+          </div>
+        <input type="text" id="name" placeholder="!hi" autocomplete="off">
       </div>
-      <div class="rengar col-md-4 align-middle"></div>
+      <div class="col-md-1"></div>
+      <div class="grid col-md-3">
+        <div class="rengar align-middle"></div>
+      </div>
+      <div class="col-md-1"></div>
     </div>
   </div>
   </body>
