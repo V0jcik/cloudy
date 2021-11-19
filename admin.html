@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Vojcik">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="gallery/icon.png">
+  <title></title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><img src="gallery/icon.png"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span><img src="https://img.icons8.com/material-rounded/24/000000/double-down.png"/></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">Główna</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Komendy
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="user.html">Użytkownik</a></li>
+              <li><a class="dropdown-item" href="mod.html">Moderator</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="admin.html">Administrator</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="author.html">Twórca</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class="container">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" class="admin"></th>
+          <th scope="col">Komenda</th>
+          <th scope="col">Opis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" class="admin"></th>
+          <td>!vojbot <span>start/stop</span></td>
+          <td>uruchamianie bota</td>
+        </tr>
+        <tr>
+          <th scope="row" class="admin"></th>
+          <td>!ban <span>nick</span> <span>czas bana *</span></td>
+          <td>zbanuj użytkownika</td>
+        </tr>
+        <tr>
+          <th scope="row" class="admin"></th>
+          <td>!unban <span>nick</span></td>
+          <td>odbanuj użytkownika</td>
+        </tr>
+        <tr>
+          <th scope="row" class="admin"></th>
+          <td>!user <span>on/off</span></td>
+          <td>bot włączy możliwość interakcji z nim dla użytkownika</td>
+        </tr>
+        <tr>
+          <th scope="row" class="admin"></th>
+          <td>!sr <span>on/off</span></td>
+          <td>bot włączy bądź wyłączy możliwość dodawania piosenek do playlisty</td>
+        </tr>
+        <tr>
+          <th scope="row" class="admin"></th>
+          <td>!play <span>link</span></td>
+          <td>bot doda piosenkę do playlisty</td>
+        </tr>
+        <tr>
+          <th scope="row" class="admin"></th>
+          <td>!skip</td>
+          <td>bot puści kolejną piosenkę z playlisty</td>
+        </tr>
+        <tr>
+          <td>+ komendy użytkownika</td>
+        </tr>
+        <thead class="thead-light">
+        <tr>
+          <th colspan="3" class="fs-5">* czas bana nie jest wymagany, nie wpisanie go banuje na czas nieokreślony, tak zwany PERM.</th>
+        </tr>
+      </thead>
+      </tbody>
+    </table>
+  </div>
+  </body>
+</html>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="js/bootstrap.js"></script>
