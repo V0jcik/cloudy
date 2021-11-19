@@ -6,6 +6,8 @@ function sleep(milliseconds) {
   } while (currentDate - date < milliseconds);
 }
 
+document.getElementById('chat').scrollTop;
+
 document.getElementById('name')
     .addEventListener('keyup', function(event) {
         if (event.code === 'Enter')
@@ -15,12 +17,11 @@ document.getElementById('name')
             
             if(message != ""){
 
-            
               const para = document.createElement("p");
               const node = document.createTextNode(message);
               para.appendChild(node);
-              const element = document.getElementById("chat");
-              element.appendChild(para);
+              const element = document.querySelector('p');
+              element.before(para);
 
               if(message.charAt(0) == '!'){
                 if(message == '!hi'){
@@ -44,8 +45,8 @@ document.getElementById('name')
                         const para = document.createElement('p');
                         let node = document.createTextNode(botmessage);
                         para.appendChild(node);
-                        const element = document.getElementById("chat");
-                        element.appendChild(para);
+                        const element = document.querySelector('p');
+                        element.before(para);
                         document.getElementById('name').value = "";
                         para.classList.add('botmess');
               }
