@@ -29,28 +29,28 @@
 }
 @keyframes bg-anim{
   0%{
-    background-image: url(gallery/ren1.0.png);
+    background-image: url(data:gallery/ren1.0.png;base64,iVB......gg==);
   }
   15%{
-    background-image: url(gallery/ren1.1.png);
+    background-image: url(data:gallery/ren1.1.png;base64,iVB......gg==);
   }
   30%{
-    background-image: url(gallery/ren1.2.png);
+    background-image: url(data:gallery/ren1.2.png;base64,iVB......gg==);
   }
   45%{
-    background-image: url(gallery/ren1.3.png);
+    background-image: url(data:gallery/ren1.3.png;base64,iVB......gg==);
   }
   60%{
-    background-image: url(gallery/ren1.4.png);
+    background-image: url(data:gallery/ren1.4.png;base64,iVB......gg==);
   }
   75%{
-    background-image: url(gallery/ren1.5.png);
+    background-image: url(data:gallery/ren1.5.png;base64,iVB......gg==);
   }
   90%{
-    background-image: url(gallery/ren1.6.png);
+    background-image: url(data:gallery/ren1.6.png;base64,iVB......gg==);
   }
   100%{
-    background-image: url(gallery/ren1.0.png);
+    background-image: url(data:gallery/ren1.7.png;base64,iVB......gg==);
   }
 }
 
