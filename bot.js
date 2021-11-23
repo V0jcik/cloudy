@@ -1,20 +1,25 @@
 var myDiv = document.getElementById("chat");
-    
+
 
 document.getElementById('name')
     .addEventListener('keyup', function(event) {
         if (event.code === 'Enter')
         {
             event.preventDefault();
+
+
             let message = document.getElementById('name').value;
-            
             if(message != ""){
 
               const para = document.createElement("p");
+              const space = document.createElement('div');
               const node = document.createTextNode(message);
               para.appendChild(node);
               const element = document.getElementById('row');
               element.appendChild(para);
+              element.appendChild(space);
+              space.classList.add('col-md-5');
+              
 
               if(message.charAt(0) == '!'){
                 if(message == '!hi'){
@@ -58,12 +63,15 @@ document.getElementById('name')
               }
               function say(botmessage){
                         const para = document.createElement('p');
+                        const space = document.createElement('div');
                         let node = document.createTextNode(botmessage);
                         para.appendChild(node);
                         const element = document.getElementById('row');
+                        element.appendChild(space);
                         element.appendChild(para);
                         document.getElementById('name').value = "";
                         para.classList.add('botmess');
+                        space.classList.add('col-md-5');
               }
             }
         }

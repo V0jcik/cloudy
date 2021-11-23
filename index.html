@@ -22,7 +22,7 @@
             <a class="nav-link active" aria-current="page" href="index.html">Główna</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle disabled" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Komendy
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -47,12 +47,17 @@
     <span class="h1">Chat</span>
     <div class="row">
       <div class="chatarea col-12">
-          <div class="chat" id="chat">
+          <div class="chat col-12" id="chat">
             <div class="row" id="row">
               <p></p>
             </div>
           </div>
-        <input type="text" id="name" placeholder="!hi" autocomplete="off">
+          <div class="row">
+            <div class="col-12">
+              <input type="text" id="name" placeholder="!hi" autocomplete="off" class="col-12">
+              <!-- <button class="col-2" onclick="" style="display: none;">Enter</button> -->
+            </div>
+          </div>
       </div>
     </div>
   </div>
