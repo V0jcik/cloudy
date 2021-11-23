@@ -13,7 +13,7 @@ document.getElementById('name')
               const para = document.createElement("p");
               const node = document.createTextNode(message);
               para.appendChild(node);
-              const element = document.getElementById('chat');
+              const element = document.getElementById('row');
               element.appendChild(para);
 
               if(message.charAt(0) == '!'){
@@ -60,7 +60,7 @@ document.getElementById('name')
                         const para = document.createElement('p');
                         let node = document.createTextNode(botmessage);
                         para.appendChild(node);
-                        const element = document.getElementById('chat');
+                        const element = document.getElementById('row');
                         element.appendChild(para);
                         document.getElementById('name').value = "";
                         para.classList.add('botmess');
