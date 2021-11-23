@@ -29,28 +29,28 @@
 }
 @keyframes bg-anim{
   0%{
-    background-image: url(data:gallery/ren1.0.png;base64,iVB......gg==);
+    background-image: url(gallery/ren1.0.png);
   }
   15%{
-    background-image: url(data:gallery/ren1.1.png;base64,iVB......gg==);
+    background-image: url(gallery/ren1.1.png);
   }
   30%{
-    background-image: url(data:gallery/ren1.2.png;base64,iVB......gg==);
+    background-image: url(gallery/ren1.2.png);
   }
   45%{
-    background-image: url(data:gallery/ren1.3.png;base64,iVB......gg==);
+    background-image: url(gallery/ren1.3.png);
   }
   60%{
-    background-image: url(data:gallery/ren1.4.png;base64,iVB......gg==);
+    background-image: url(gallery/ren1.4.png);
   }
   75%{
-    background-image: url(data:gallery/ren1.5.png;base64,iVB......gg==);
+    background-image: url(gallery/ren1.5.png);
   }
   90%{
-    background-image: url(data:gallery/ren1.6.png;base64,iVB......gg==);
+    background-image: url(gallery/ren1.6.png);
   }
   100%{
-    background-image: url(data:gallery/ren1.7.png;base64,iVB......gg==);
+    background-image: url(gallery/ren1.0.png);
   }
 }
 
@@ -149,7 +149,7 @@ tr td{
 }
 .chatarea{
   opacity: 0.7;
-  background-position: center;
+  background-position: bottom middle;
   background-size: 50%;
   background-repeat: no-repeat;
   animation: bg-anim 10s infinite linear;
