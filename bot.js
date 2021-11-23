@@ -1,5 +1,5 @@
 var myDiv = document.getElementById("chat");
-
+const input = document.getElementById('name');
 
 document.getElementById('name')
     .addEventListener('keyup', function(event) {
@@ -8,7 +8,7 @@ document.getElementById('name')
             event.preventDefault();
 
 
-            let message = document.getElementById('name').value;
+            let message = input.value;
             if(message != ""){
 
               const para = document.createElement("p");
@@ -24,13 +24,9 @@ document.getElementById('name')
               if(message.charAt(0) == '!'){
                 if(message == '!hi'){
                   say("No witam Cie człowieku");
-                  document.getElementById('name').value = "";
-                  myDiv.scrollTop = myDiv.scrollHeight;
                 }
                 else if(message == '!vojbot'){
                   say("Jestem VojBot, powstałem 26.07.2021. Moim stwórcą jest Vojcik. Na razie mało potrafię, ale z czasem nauczę się czegoś nowego. Listę moich komend sprawdzisz wpisując !vblist");
-                  document.getElementById('name').value = "";
-                  myDiv.scrollTop = myDiv.scrollHeight;
                 }
                 // DOROBIĆ OKIENKO POPUP Z LISTĄ KOMEND
                 // if(message == '!vblist'){
@@ -40,11 +36,13 @@ document.getElementById('name')
                 // }
                 else if(message == '!vblist'){
                   say("Dostępne komendy: !hi | !vojbot");
-                  document.getElementById('name').value = "";
-                  myDiv.scrollTop = myDiv.scrollHeight;
+                }
+                else if(message == '!clear'){
+                  document.getElementById('row').innerHTML = '<p></p>';
+                  say("Czat został wyczyszczony");
                 }
                 else{
-                  document.getElementById('name').value = "";
+                  input.value = "";
                   myDiv.scrollTop = myDiv.scrollHeight;
                 }
                 // else if(message == '!vojbot'){
@@ -58,7 +56,7 @@ document.getElementById('name')
                 // }
               }
               else{
-                document.getElementById('name').value = "";
+                input.value = "";
                 myDiv.scrollTop = myDiv.scrollHeight;
               }
               function say(botmessage){
@@ -69,9 +67,10 @@ document.getElementById('name')
                         const element = document.getElementById('row');
                         element.appendChild(space);
                         element.appendChild(para);
-                        document.getElementById('name').value = "";
-                        para.classList.add('botmess');
-                        space.classList.add('col-md-5');
+                          input.value = "";
+                          para.classList.add('botmess');
+                          space.classList.add('col-md-5');
+                          myDiv.scrollTop = myDiv.scrollHeight;
               }
             }
         }
