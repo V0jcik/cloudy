@@ -26,6 +26,7 @@
     background-position: top left;
   }
 }
+
 body{
   background-size: 50%;
   transition: background-size 1500ms linear;
@@ -47,18 +48,6 @@ a:visited, a:link{
   border-radius: 18px;
   padding: 2.5vh;
   background-color: rgba(255, 255, 255, 0.472);
-}
-.moduser::after{
-  content: 'USER';
-  color: green;
-}
-.moduser::before{
-  content: 'MOD';
-  color: red;
-}
-.mod::after{
-  content: 'MOD';
-  color: red;
 }
 .user::after{
   content: 'USER';
@@ -137,6 +126,7 @@ tr td{
   height: auto;
   border-radius: 30px 30px 30px 30px;
   margin: 5px;
+  margin-left: 10px;
 }
 .row p{
   float: left;
@@ -157,6 +147,9 @@ tr td{
   border: 2px solid rgb(116, 116, 116);
   border-radius: 10px 10px 10px 10px;
 }
+.chatarea input:focus{
+  outline: none;
+}
 .sparea{
   position: relative;
 }
@@ -166,7 +159,7 @@ tr td{
   right: 10px;
   color: black;
   height: 40px;
-  background-color: rgba(197, 197, 197, 0.822);
+  background-color: rgb(236, 234, 234);
   border: 2px solid rgb(116, 116, 116);
   border-radius: 10px 10px 10px 10px;
 }
@@ -185,4 +178,16 @@ tr td{
 .chat::-webkit-scrollbar-thumb{
   border-radius: 10px;
   background-color: pink;
+}
+.popup{
+  display: none;
+}
+.clearpop{
+  background-color:rgba(197, 197, 197, 0.822);
+  border-radius: 10px;
+  border: 2px solid rgb(116, 116, 116);
+}
+.cl{
+  outline: none;
+  border: none;
 }
