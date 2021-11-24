@@ -150,15 +150,20 @@ tr td{
   color: white;
 }
 .chatarea input{
-  color: black;
   margin-top: 5px;
+  color: black;
   height: 40px;
   background-color: rgba(197, 197, 197, 0.822);
   border: 2px solid rgb(116, 116, 116);
   border-radius: 10px 10px 10px 10px;
 }
+.sparea{
+  position: relative;
+}
 .chatarea button{
-  margin-top: 5px;
+  top: 5px;
+  position: absolute;
+  right: 10px;
   color: black;
   height: 40px;
   background-color: rgba(197, 197, 197, 0.822);
