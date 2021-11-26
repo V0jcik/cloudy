@@ -92,9 +92,15 @@ tr td{
 .chat{
   background-color: #BCBCBC;
   z-index: 2;
-  background-color: rgba(167, 72, 127, 0.39);
+  background-color: rgba(255, 255, 255, 0.250);
+  background-image: url(gallery/ściur.png);
+  background-repeat: no-repeat;
+  background-size: 15%;
+  background-position: bottom right;
+
   border: 3px solid rgba(0, 0, 0, 0.493);
-  box-shadow: 0.1em 0 0.5em 0.01em black;
+  box-shadow: 0.1em 0 0.5em 0.01em black,
+              inset 0 0 5em 0.1em black;
   position: relative;
   height: 25rem;
   padding: 1em 0 0 1em;
