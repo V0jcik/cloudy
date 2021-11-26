@@ -158,6 +158,15 @@ function vojbot(){
           const wynik = Math.pow(Number(MessageArr[1]),Number(MessageArr[2]));
           say(wynik);
         }
+
+
+        // DODAĆ:
+        // !iledowakacji
+        // !iledoswiat
+        // !newyear
+        // !urodziny(vojbota)
+
+
         else if(MessageArr[0] == 'dzis'){
           var today = new Date();
           var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
