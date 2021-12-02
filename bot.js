@@ -4,7 +4,7 @@ document.getElementById('name')
   {
     event.preventDefault();
     // validate_text();
-    cloudy();
+    validate_text();
   }
 });
 
@@ -15,7 +15,8 @@ let disable = "no";
 
 function bl(){
   disable = "no";
-  say("<b>Cloudy: </b>Jeśli przemyślałeś, to witam z powrotem :D");
+  document.getElementById('name').disabled = false;
+  say("<b>Cloudy: </b>Jeśli przemyślałeś/aś swoje zachowanie, to witam z powrotem :D");
 }
 
 function clsinput(){
@@ -50,41 +51,8 @@ function say(botmessage){
         space.classList.add('col-md-5');
         clsinput();
 }
-        //KOD DO WYSZUKIWANIA SŁÓW KLUCZOWYCH Z TALICY W STRINGU (NIE DZIAŁA :)
-    // var bannable = new Array("bloody", "war", "terror");
-
-    //   var swear_alert_arr = new Array();
-    //   var swear_alert_count = 0;
-    //   function reset_alert_count(){
-    //     swear_alert_count = 0;
-    //   }
-    //   function validate_text(){
-    //     reset_alert_count();
-    //     for (var i = 0; i < bannable.length; i++){
-    //       for (var j = 0; j < message.length; j++){
-    //         if (bannable[i] == message.substring(j, j + bannable[i].length).toLowerCase()){
-    //           swear_alert_arr[swear_alert_count] = message.substring(j, j + bannable[i].length);
-    //           swear_alert_count++;
-    //         }
-    //       }
-    //     }
-    //     var alert_text = "";
-    //     for (var k = 1; k <= swear_alert_count; k++) {
-    //       alert_text += "\n" + "(" + k + ")  " + swear_alert_arr[k - 1];
-    //     }
-    //     if (swear_alert_count > 0){
-    //       say("nie" + alert_text);
-    //       // say("Wiadomość nie zostanie wysłana!!!\n Zawiera nielegalne słowa takie jak:\n__\n" + alert_text + "\n");
-    //     }
-    //     else{
-    //       vojbot();
-    //     }
-    //   }
-    //   window.onload = reset_alert_count;
-
 
 function cloudy(){
-  if(disable == "no"){
     let message = input.value;
     if(message !== ""){
 
@@ -97,14 +65,8 @@ function cloudy(){
       element.appendChild(space);
       space.classList.add('col-md-5');
       element.appendChild(para);
+      clsinput();
       
-      if(bannable.includes(message)){
-        
-        disable = "yes";
-        setTimeout(bl, 10000);
-        say("<b>Cloudy: </b>Możliwość interakcji ze mną została zablokowana, masz chwilę żeby ochłonąć :)")
-        clsinput();
-      }
       if(message.charAt(0) == comprompt){ //Jeśli wiadomość zaczyna się znakiem zachęty
         var MessageArr = message.match(/\S+/gi);
         message = message.replace(comprompt, ""); //usunięcie znaku zachęty ze stringa
@@ -117,7 +79,7 @@ function cloudy(){
           say("<b>Cloudy: </b>Jestem Cloudy, powstałem 26.07.2021. Moim stwórcą jest Vojcik. Na razie nie umiem zbyt wiele, ale z czasem uczę się nowych rzeczy. Listę moich poleceń sprawdzisz wpisując !clist");
         }
         else if(message == 'clist'){
-          say("<b>Cloudy: </b>Dostępne komendy: \n!hi | !cloudy | !clear | !calc");
+          say("<b>Cloudy: </b>Dostępne komendy: \n!hi | !cloudy | !clear | !calc | !dzis | !iledoswiat");
         }
         else if(MessageArr[0] == 'idz'){
           if(MessageArr[1] == 'rick'){
@@ -147,7 +109,7 @@ function cloudy(){
           clsinput();
         }
         else if(MessageArr[0] == 'calc'){
-          say("<b>Cloudy: </b>Potrafię liczyć! \n !dodaj [a] [b] \n !odejmij [a] [b] \n !podziel [a] [b] \n !pomnoz [a] [b] \n !poteguj [a] [b] \n <span class='fs-7'>bez nawiasów kwardatowych</span>");
+          say("<b>Cloudy: </b>Potrafię liczyć! \n !dodaj [a] [b] \n !odejmij [a] [b] \n !podziel [a] [b] \n !pomnoz [a] [b] \n !poteguj [a] [b] \n <span style='font-size:11px;'>*bez nawiasów kwardatowych</span>");
         }
         else if(MessageArr[0] == 'dodaj'){
           const wynik = (Number(MessageArr[1])+Number(MessageArr[2]));
@@ -234,10 +196,6 @@ function cloudy(){
         clsinput();
       }
     }
-  }
-  else{
-    clsinput();
-  }
 }
 
 
