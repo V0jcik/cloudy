@@ -4,7 +4,7 @@ document.getElementById('name')
   {
     event.preventDefault();
     // validate_text();
-    vojbot();
+    cloudy();
   }
 });
 
@@ -15,7 +15,7 @@ let disable = "no";
 
 function bl(){
   disable = "no";
-  say("Jeśli przemyślałeś, to witam z powrotem :D");
+  say("<b>Cloudy: </b>Jeśli przemyślałeś, to witam z powrotem :D");
 }
 
 function clsinput(){
@@ -26,22 +26,29 @@ function clsinput(){
 function say(botmessage){
   const para = document.createElement('p');
   const space = document.createElement('div');
-  let node;
+  let node = document.createElement('span');
       //Jeśli przekazana zmienna to cyfra, dodaje frazę "Wynik działania to"
     if(!isNaN(botmessage)){
-    node = document.createTextNode('Wynik działania to: '+botmessage);
+    node.innerHTML = ('<b>Cloudy: </b>Wynik działania to: '+botmessage);
+    para.appendChild(node);
     }
+    // else if(botmessage == 'bday'){
+    //   dateinp = document.createElement('div');
+    //   dateinp.innerHTML = '<input type = "date" id="bday" onblur="calculateDays()">';
+    //   node = document.createTextNode("Wprowadz datę swoich urodzin:");
+    //   para.appendChild(node);
+    //   para.appendChild(dateinp)
+    // }
     else{
-    node = document.createTextNode(botmessage);
+    node.innerHTML = (botmessage);
+    para.appendChild(node);
     }
-
-  para.appendChild(node);
-  const element = document.getElementById('row');
-  element.appendChild(space);
-  element.appendChild(para);
-    para.classList.add('botmess');
-    space.classList.add('col-md-5');
-    clsinput();
+      const element = document.getElementById('row');
+      element.appendChild(para);
+      element.appendChild(space);
+        para.classList.add('botmess');
+        space.classList.add('col-md-5');
+        clsinput();
 }
         //KOD DO WYSZUKIWANIA SŁÓW KLUCZOWYCH Z TALICY W STRINGU (NIE DZIAŁA :)
     // var bannable = new Array("bloody", "war", "terror");
@@ -76,40 +83,41 @@ function say(botmessage){
     //   window.onload = reset_alert_count;
 
 
-function vojbot(){
+function cloudy(){
   if(disable == "no"){
     let message = input.value;
     if(message !== ""){
 
       const para = document.createElement("p");
       const space = document.createElement('div');
-      const node = document.createTextNode(message);
+      let node = document.createElement('span');
+      node.innerHTML = (message);
       para.appendChild(node);
       const element = document.getElementById('row');
-      element.appendChild(para);
       element.appendChild(space);
       space.classList.add('col-md-5');
+      element.appendChild(para);
       
       if(bannable.includes(message)){
         
         disable = "yes";
         setTimeout(bl, 10000);
-        say("Możliwość interakcji ze mną została zablokowana, masz chwilę żeby ochłonąć :)")
+        say("<b>Cloudy: </b>Możliwość interakcji ze mną została zablokowana, masz chwilę żeby ochłonąć :)")
         clsinput();
       }
       if(message.charAt(0) == comprompt){ //Jeśli wiadomość zaczyna się znakiem zachęty
         var MessageArr = message.match(/\S+/gi);
-        message = message.replace(comprompt, ""); //usunięcie znaku zachęty ze zmiennej
-        MessageArr[0] = MessageArr[0].replace(comprompt,""); //usunięcie znaku zachęty ze zmiennej
+        message = message.replace(comprompt, ""); //usunięcie znaku zachęty ze stringa
+        MessageArr[0] = MessageArr[0].replace(comprompt,""); //usunięcie znaku zachęty ze stringa
 
         if(message == 'hi'){
-          say("No witam Cie człowieku");
+          say("<b>Cloudy: </b>Witam Cię człowieku, jestem Cloudy. \nWięcej o mnie -> !cloudy");
         }
-        else if(message == 'vojbot'){
-          say("Jestem VojBot, powstałem 26.07.2021. Moim stwórcą jest Vojcik. Na razie mało potrafię, ale z czasem nauczę się czegoś nowego. Listę moich komend sprawdzisz wpisując !vblist");
+        else if(message == 'cloudy'){
+          say("<b>Cloudy: </b>Jestem Cloudy, powstałem 26.07.2021. Moim stwórcą jest Vojcik. Na razie nie umiem zbyt wiele, ale z czasem uczę się nowych rzeczy. Listę moich poleceń sprawdzisz wpisując !clist");
         }
-        else if(message == 'vblist'){
-          say("Dostępne komendy: /hi | /vojbot | /clear");
+        else if(message == 'clist'){
+          say("<b>Cloudy: </b>Dostępne komendy: \n!hi | !cloudy | !clear | !calc");
         }
         else if(MessageArr[0] == 'idz'){
           if(MessageArr[1] == 'rick'){
@@ -138,6 +146,9 @@ function vojbot(){
           document.getElementById('clbutton').click();
           clsinput();
         }
+        else if(MessageArr[0] == 'calc'){
+          say("<b>Cloudy: </b>Potrafię liczyć! \n !dodaj [a] [b] \n !odejmij [a] [b] \n !podziel [a] [b] \n !pomnoz [a] [b] \n !poteguj [a] [b] \n <span class='fs-7'>bez nawiasów kwardatowych</span>");
+        }
         else if(MessageArr[0] == 'dodaj'){
           const wynik = (Number(MessageArr[1])+Number(MessageArr[2]));
           say(wynik);
@@ -146,11 +157,11 @@ function vojbot(){
           const wynik = (Number(MessageArr[1])-Number(MessageArr[2]));
           say(wynik);
         }
-        else if(MessageArr[0] == 'dziel'){
+        else if(MessageArr[0] == 'podziel'){
           const wynik = (Number(MessageArr[1])/Number(MessageArr[2]));
           say(wynik);
         }
-        else if(MessageArr[0] == 'mnoz'){
+        else if(MessageArr[0] == 'pomnoz'){
           const wynik = (Number(MessageArr[1])*Number(MessageArr[2]));
           say(wynik);
         }
@@ -172,8 +183,40 @@ function vojbot(){
           var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
           var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
           var dateTime = date+' godzina: '+time;
-          say("Dziś jest: "+dateTime);
+          say("<b>Cloudy: </b>Dziś jest: "+dateTime);
         }
+        else if(MessageArr[0] == 'iledoswiat'){
+          let today = new Date();
+          let christmasYear = today.getFullYear();
+          if (today.getMonth() == 11 &&
+              today.getDate() > 25){
+            christmasYear = christmasYear + 1;
+          }
+          let christmasDate = new Date(christmasYear, 11, 25);
+  
+          let dayMilliseconds = 1000 * 60 * 60 * 24;
+          let remainingDays = Math.ceil((christmasDate.getTime() - today.getTime()) / (dayMilliseconds));
+          say("<b>Cloudy: </b>Zostało " + remainingDays + " dni do swiąt.");
+        }
+        else if(message == 'marta'){
+          say("<b>Vojcik: </b>Dzięki niej Cloudy dostał twarz, jestem wdzięczny za pomoc.");
+        }
+        // else if(MessageArr[0] == 'iledowakacji'){
+        //   let today = new Date();
+        //   let christmasYear = today.getFullYear();
+        //   if (today.getMonth() == 6 &&
+        //       today.getDate() > 1){
+        //     christmasYear = christmasYear + 1;
+        //   }
+        //   let christmasDate = new Date(christmasYear, 6, 1);
+  
+        //   let dayMilliseconds = 1000 * 60 * 60 * 24;
+        //   let remainingDays = Math.ceil((christmasDate.getTime() - today.getTime()) / (dayMilliseconds));
+        //   say("Zostało " + remainingDays + " dni do wakacji.");
+        // }
+        // else if(MessageArr[0] == 'urodziny'){
+          
+        // }
         else{
           clsinput();
         }
@@ -198,127 +241,3 @@ function vojbot(){
 }
 
 
-const bannable = ['nigger','chuj','chuja', 'chujek', 'chuju', 'chujem', 'chujnia',
-'chujowy', 'chujowa', 'chujowe', 'cipa', 'cipę', 'cipe', 'cipą',
-'cipie', 'dojebać','dojebac', 'dojebie', 'dojebał', 'dojebal',
-'dojebała', 'dojebala', 'dojebałem', 'dojebalem', 'dojebałam',
-'dojebalam', 'dojebię', 'dojebie', 'dopieprzać', 'dopieprzac',
-'dopierdalać', 'dopierdalac', 'dopierdala', 'dopierdalał',
-'dopierdalal', 'dopierdalała', 'dopierdalala', 'dopierdoli',
-'dopierdolił', 'dopierdolil', 'dopierdolę', 'dopierdole', 'dopierdoli',
-'dopierdalający', 'dopierdalajacy', 'dopierdolić', 'dopierdolic',
-'dupa', 'dupie', 'dupą', 'dupcia', 'dupeczka', 'dupy', 'dupe', 'huj',
-'hujek', 'hujnia', 'huja', 'huje', 'hujem', 'huju', 'jebać', 'jebac',
-'jebał', 'jebal', 'jebie', 'jebią', 'jebia', 'jebak', 'jebaka', 'jebal',
-'jebał', 'jebany', 'jebane', 'jebanka', 'jebanko', 'jebankiem',
-'jebanymi', 'jebana', 'jebanym', 'jebanej', 'jebaną', 'jebana',
-'jebani', 'jebanych', 'jebanymi', 'jebcie', 'jebiący', 'jebiacy',
-'jebiąca', 'jebiaca', 'jebiącego', 'jebiacego', 'jebiącej', 'jebiacej',
-'jebia', 'jebią', 'jebie', 'jebię', 'jebliwy', 'jebnąć', 'jebnac',
-'jebnąc', 'jebnać', 'jebnął', 'jebnal', 'jebną', 'jebna', 'jebnęła',
-'jebnela', 'jebnie', 'jebnij', 'jebut', 'koorwa', 'kórwa', 'kurestwo',
-'kurew', 'kurewski', 'kurewska', 'kurewskiej', 'kurewską', 'kurewska',
-'kurewsko', 'kurewstwo', 'kurwa', 'kurwaa', 'kurwami', 'kurwą', 'kurwe',
-'kurwę', 'kurwie', 'kurwiska', 'kurwo', 'kurwy', 'kurwach', 'kurwami',
-'kurewski', 'kurwiarz', 'kurwiący', 'kurwica', 'kurwić', 'kurwic',
-'kurwidołek', 'kurwik', 'kurwiki', 'kurwiszcze', 'kurwiszon',
-'kurwiszona', 'kurwiszonem', 'kurwiszony', 'kutas', 'kutasa', 'kutasie',
-'kutasem', 'kutasy', 'kutasów', 'kutasow', 'kutasach', 'kutasami',
-'matkojebca', 'matkojebcy', 'matkojebcą', 'matkojebca', 'matkojebcami',
-'matkojebcach', 'nabarłożyć', 'najebać', 'najebac', 'najebał',
-'najebal', 'najebała', 'najebala', 'najebane', 'najebany', 'najebaną',
-'najebana', 'najebie', 'najebią', 'najebia', 'naopierdalać',
-'naopierdalac', 'naopierdalał', 'naopierdalal', 'naopierdalała',
-'naopierdalala', 'naopierdalała', 'napierdalać', 'napierdalac',
-'napierdalający', 'napierdalajacy', 'napierdolić', 'napierdolic',
-'nawpierdalać', 'nawpierdalac', 'nawpierdalał', 'nawpierdalal',
-'nawpierdalała', 'nawpierdalala', 'obsrywać', 'obsrywac', 'obsrywający',
-'obsrywajacy', 'odpieprzać', 'odpieprzac', 'odpieprzy', 'odpieprzył',
-'odpieprzyl', 'odpieprzyła', 'odpieprzyla', 'odpierdalać',
-'odpierdalac', 'odpierdol', 'odpierdolił', 'odpierdolil',
-'odpierdoliła', 'odpierdolila', 'odpierdoli', 'odpierdalający',
-'odpierdalajacy', 'odpierdalająca', 'odpierdalajaca', 'odpierdolić',
-'odpierdolic', 'odpierdoli', 'odpierdolił', 'opieprzający',
-'opierdalać', 'opierdalac', 'opierdala', 'opierdalający',
-'opierdalajacy', 'opierdol', 'opierdolić', 'opierdolic', 'opierdoli',
-'opierdolą', 'opierdola', 'piczka', 'pieprznięty', 'pieprzniety',
-'pieprzony', 'pierdel', 'pierdlu', 'pierdolą', 'pierdola', 'pierdolący',
-'pierdolacy', 'pierdoląca', 'pierdolaca', 'pierdol', 'pierdole',
-'pierdolenie', 'pierdoleniem', 'pierdoleniu', 'pierdolę', 'pierdolec',
-'pierdola', 'pierdolą', 'pierdolić', 'pierdolicie', 'pierdolic',
-'pierdolił', 'pierdolil', 'pierdoliła', 'pierdolila', 'pierdoli',
-'pierdolnięty', 'pierdolniety', 'pierdolisz', 'pierdolnąć',
-'pierdolnac', 'pierdolnął', 'pierdolnal', 'pierdolnęła', 'pierdolnela',
-'pierdolnie', 'pierdolnięty', 'pierdolnij', 'pierdolnik', 'pierdolona',
-'pierdolone', 'pierdolony', 'pierdołki', 'pierdzący', 'pierdzieć',
-'pierdziec', 'pizda', 'pizdą', 'pizde', 'pizdę', 'piździe', 'pizdzie',
-'pizdnąć', 'pizdnac', 'pizdu', 'podpierdalać', 'podpierdalac',
-'podpierdala', 'podpierdalający', 'podpierdalajacy', 'podpierdolić',
-'podpierdolic', 'podpierdoli', 'pojeb', 'pojeba', 'pojebami',
-'pojebani', 'pojebanego', 'pojebanemu', 'pojebani', 'pojebany',
-'pojebanych', 'pojebanym', 'pojebanymi', 'pojebem', 'pojebać',
-'pojebac', 'pojebalo', 'popierdala', 'popierdalac', 'popierdalać',
-'popierdolić', 'popierdolic', 'popierdoli', 'popierdolonego',
-'popierdolonemu', 'popierdolonym', 'popierdolone', 'popierdoleni',
-'popierdolony', 'porozpierdalać', 'porozpierdala', 'porozpierdalac',
-'poruchac', 'poruchać', 'przejebać', 'przejebane', 'przejebac',
-'przyjebali', 'przepierdalać', 'przepierdalac', 'przepierdala',
-'przepierdalający', 'przepierdalajacy', 'przepierdalająca',
-'przepierdalajaca', 'przepierdolić', 'przepierdolic', 'przyjebać',
-'przyjebac', 'przyjebie', 'przyjebała', 'przyjebala', 'przyjebał',
-'przyjebal', 'przypieprzać', 'przypieprzac', 'przypieprzający',
-'przypieprzajacy', 'przypieprzająca', 'przypieprzajaca',
-'przypierdalać', 'przypierdalac', 'przypierdala', 'przypierdoli',
-'przypierdalający', 'przypierdalajacy', 'przypierdolić',
-'przypierdolic', 'qrwa', 'rozjebać', 'rozjebac', 'rozjebie',
-'rozjebała', 'rozjebią', 'rozpierdalać', 'rozpierdalac', 'rozpierdala',
-'rozpierdolić', 'rozpierdolic', 'rozpierdole', 'rozpierdoli',
-'rozpierducha', 'skurwić', 'skurwiel', 'skurwiela', 'skurwielem',
-'skurwielu', 'skurwysyn', 'skurwysynów', 'skurwysynow', 'skurwysyna',
-'skurwysynem', 'skurwysynu', 'skurwysyny', 'skurwysyński',
-'skurwysynski', 'skurwysyństwo', 'skurwysynstwo', 'spieprzać',
-'spieprzac', 'spieprza', 'spieprzaj', 'spieprzajcie', 'spieprzają',
-'spieprzaja', 'spieprzający', 'spieprzajacy', 'spieprzająca',
-'spieprzajaca', 'spierdalać', 'spierdalac', 'spierdala', 'spierdalał',
-'spierdalała', 'spierdalal', 'spierdalalcie', 'spierdalala',
-'spierdalający', 'spierdalajacy', 'spierdolić', 'spierdolic',
-'spierdoli', 'spierdoliła', 'spierdoliło', 'spierdolą', 'spierdola',
-'srać', 'srac', 'srający', 'srajacy', 'srając', 'srajac', 'sraj',
-'sukinsyn', 'sukinsyny', 'sukinsynom', 'sukinsynowi', 'sukinsynów',
-'sukinsynow', 'śmierdziel', 'udupić', 'ujebać', 'ujebac', 'ujebał',
-'ujebal', 'ujebana', 'ujebany', 'ujebie', 'ujebała', 'ujebala',
-'upierdalać', 'upierdalac', 'upierdala', 'upierdoli', 'upierdolić',
-'upierdolic', 'upierdoli', 'upierdolą', 'upierdola', 'upierdoleni',
-'wjebać', 'wjebac', 'wjebie', 'wjebią', 'wjebia', 'wjebiemy',
-'wjebiecie', 'wkurwiać', 'wkurwiac', 'wkurwi', 'wkurwia', 'wkurwiał',
-'wkurwial', 'wkurwiający', 'wkurwiajacy', 'wkurwiająca', 'wkurwiajaca',
-'wkurwić', 'wkurwic', 'wkurwi', 'wkurwiacie', 'wkurwiają', 'wkurwiali',
-'wkurwią', 'wkurwia', 'wkurwimy', 'wkurwicie', 'wkurwiacie', 'wkurwić',
-'wkurwic', 'wkurwia', 'wpierdalać', 'wpierdalac', 'wpierdalający',
-'wpierdalajacy', 'wpierdol', 'wpierdolić', 'wpierdolic', 'wpizdu',
-'wyjebać', 'wyjebac', 'wyjebali', 'wyjebał', 'wyjebac', 'wyjebała',
-'wyjebały', 'wyjebie', 'wyjebią', 'wyjebia', 'wyjebiesz', 'wyjebie',
-'wyjebiecie', 'wyjebiemy', 'wypieprzać', 'wypieprzac', 'wypieprza',
-'wypieprzał', 'wypieprzal', 'wypieprzała', 'wypieprzala', 'wypieprzy',
-'wypieprzyła', 'wypieprzyla', 'wypieprzył', 'wypieprzyl', 'wypierdal',
-'wypierdalać', 'wypierdalac', 'wypierdala', 'wypierdalaj',
-'wypierdalał', 'wypierdalal', 'wypierdalała', 'wypierdalala',
-'wypierdalać', 'wypierdolić', 'wypierdolic', 'wypierdoli',
-'wypierdolimy', 'wypierdolicie', 'wypierdolą', 'wypierdola',
-'wypierdolili', 'wypierdolił', 'wypierdolil', 'wypierdoliła',
-'wypierdolila', 'zajebać', 'zajebac', 'zajebie', 'zajebią', 'zajebia',
-'zajebiał', 'zajebial', 'zajebała', 'zajebiala', 'zajebali', 'zajebana',
-'zajebani', 'zajebane', 'zajebany', 'zajebanych', 'zajebanym',
-'zajebanymi', 'zajebiste', 'zajebisty', 'zajebistych', 'zajebista',
-'zajebistym', 'zajebistymi', 'zajebiście', 'zajebiscie', 'zapieprzyć',
-'zapieprzyc', 'zapieprzy', 'zapieprzył', 'zapieprzyl', 'zapieprzyła',
-'zapieprzyla', 'zapieprzą', 'zapieprza', 'zapieprzy', 'zapieprzymy',
-'zapieprzycie', 'zapieprzysz', 'zapierdala', 'zapierdalać',
-'zapierdalac', 'zapierdalaja', 'zapierdalał', 'zapierdalaj',
-'zapierdalajcie', 'zapierdalała', 'zapierdalala', 'zapierdalali',
-'zapierdalający', 'zapierdalajacy', 'zapierdolić', 'zapierdolic',
-'zapierdoli', 'zapierdolił', 'zapierdolil', 'zapierdoliła',
-'zapierdolila', 'zapierdolą', 'zapierdola', 'zapierniczać',
-'zapierniczający', 'zasrać', 'zasranym', 'zasrywać', 'zasrywający',
-'zesrywać', 'zesrywający', 'zjebać', 'zjebac', 'zjebał', 'zjebal',
-'zjebała', 'zjebala', 'zjebana','zjebany', 'zjebią', 'zjebali', 'zjeby'];

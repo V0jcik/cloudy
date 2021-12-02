@@ -6,57 +6,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="gallery/icon.png">
-  <title>VojBot</title>
+  <link rel="icon" href="gallery/Cloudy.png">
+  <title>Cloudy</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-    <a class="navbar-brand" href="index.html"><img src="gallery/icon.png"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span><img src="https://img.icons8.com/material-rounded/24/000000/double-down.png"/></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Główna</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Bot
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="commands.html">Komendy</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="admin.html">Panel sterowania</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="author.html">Twórca</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
   <div class="container my-5">
-    <div class="header">
-      <span class="h1">VojBot</span>
-      <span class="fs-4">to chat bot, odpowiada na komendy. Lecz potrafi też samodzielnie działać, na przykład skanować wiadomości wysyłane na chacie. Przykładem mogą być słowa obraźliwe które wykrywa i wyłącza możliwość interakcji na określony czas. </span>
-    </div>
-    <span class="h1">Chat</span>
+    <div class="cloudy">
     <div class="row">
-      <div class="chatarea col-12">
-          <div class="chat col-12" id="chat">
-            <div class="row" id="row">
-              <p></p>
+      <div class="space col-md-4"></div>
+        <div class="header col-md-8 my-1">
+          <div class="bg">
+            <span class="h3">Cloudy</span>
+            <span class="fs-6">to chat bot, odpowiada na zadane mu polecenia. Przywitaj się !hi</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="space col-md-4"></div>
+          <div class="chatarea col-md-8 my-1">
+            <div class="bg">
+              <span class="h3">Chat</span>
+                <div class="chat col-12 my-2" id="chat">
+                  <div class="row" id="row">
+                    <p></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 sparea">
+                    <input type="text" id="name" autocomplete="off" class="col-12">
+                    <button id="button" onclick="cloudy()">Enter</button>
+                  </div>
+                </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 sparea">
-              <input type="text" id="name" autocomplete="off" class="col-12">
-              <button id="button" onclick="vojbot()">Enter</button>
-            </div>
-          </div>
+      </div>
+      <div class="mcloudy d-md-none">
+        <img src="gallery/Cloudy.png" alt="Cloudy by Marta">
       </div>
     </div>
   </div>
@@ -74,8 +59,10 @@
           </div>
         </div>
     </div>
+
   </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="js/bootstrap.js"></script>
 <script src="bot.js"></script>
+<script src="ban.js"></script>
