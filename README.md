@@ -1,4 +1,2 @@
-# Voj_bot
- Projekt chat bota w JavaScript
- 
- https://v0jcik.github.io/cloudy/
+# Cloudy
+ Projekt chat bota w JavaScript  https://v0jcik.github.io/cloudy/
