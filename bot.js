@@ -59,7 +59,7 @@ function cloudy(){
       const para = document.createElement("p");
       const space = document.createElement('div');
       let node = document.createElement('span');
-      node.innerHTML = (message);
+      node.innerHTML = ('<b>Ty: </b>'+message);
       para.appendChild(node);
       const element = document.getElementById('row');
       element.appendChild(space);
