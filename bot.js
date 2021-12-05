@@ -31,19 +31,14 @@ function say(botmessage){
       //Jeśli przekazana zmienna to cyfra, dodaje frazę "Wynik działania to"
     if(!isNaN(botmessage)){
     node.innerHTML = ('<b>Cloudy: </b>Wynik działania to: '+botmessage);
-    para.appendChild(node);
     }
-    else if(botmessage == 'bday'){
-      dateinp = document.createElement('div');
-      dateinp.innerHTML = '<input type = "date" id="bday">';
-      node = document.createTextNode("Wprowadz datę swoich urodzin:");
-      para.appendChild(node);
-      para.appendChild(dateinp)
+    else if(botmessage == "thanks"){
+      node.innerHTML = ('<b>Vojcik: </b>Marta, dzięki niej Cloudy otrzymał twarz. Jestem bardzo wdzięczny za pomoc.');
     }
     else{
-    node.innerHTML = (botmessage);
-    para.appendChild(node);
+    node.innerHTML = ('<b>Cloudy: </b>'+botmessage);
     }
+    para.appendChild(node);
       const element = document.getElementById('row');
       element.appendChild(para);
       element.appendChild(space);
@@ -51,11 +46,6 @@ function say(botmessage){
         space.classList.add('col-md-5');
         clsinput();
 }
-
-
-
-
-
 
 function birhtday(myBirthday){
   let today, bday, diff, days, age, rok= 0;
@@ -107,15 +97,15 @@ function cloudy(){
         MessageArr[0] = MessageArr[0].replace(comprompt,""); //usunięcie znaku zachęty ze stringa
 
         if(message == 'hi'){
-          say("<b>Cloudy: </b>Witam Cię człowieku, jestem Cloudy. \nWięcej o mnie -> !cloudy");
+          say("Witam Cię człowieku, jestem Cloudy. \nWięcej o mnie -> !cloudy");
         }
-        
+
         else if(message == 'cloudy'){
-          say("<b>Cloudy: </b>Jestem Cloudy, powstałem 26.07.2021. Moim stwórcą jest Vojcik. Na razie nie umiem zbyt wiele, ale z czasem uczę się nowych rzeczy. Listę moich poleceń sprawdzisz wpisując !clist");
+          say("Jestem Cloudy, powstałem 26.07.2021. Moim stwórcą jest Vojcik. Na razie nie umiem zbyt wiele, ale z czasem uczę się nowych rzeczy. Listę moich poleceń sprawdzisz wpisując !clist");
         }
 
         else if(message == 'clist'){
-          say("<b>Cloudy: </b>Dostępne komendy: \n!hi | !cloudy | !clear | !calc | !dzis | !iledoswiat");
+          say("Dostępne komendy: \n!hi | !cloudy | !clear | !calc | !dzis | !iledoswiat");
         }
 
         else if(MessageArr[0] == 'idz'){
@@ -140,7 +130,7 @@ function cloudy(){
         }
 
         else if(MessageArr[0] == 'calc'){
-          say("<b>Cloudy: </b>Potrafię liczyć! \n !dodaj [a] [b] \n !odejmij [a] [b] \n !podziel [a] [b] \n !pomnoz [a] [b] \n !poteguj [a] [b] \n <span style='font-size:11px;'>*bez nawiasów kwardatowych</span>");
+          say("Potrafię liczyć! \n !dodaj [a] [b] \n !odejmij [a] [b] \n !podziel [a] [b] \n !pomnoz [a] [b] \n !poteguj [a] [b] \n <span style='font-size:11px;'>*bez nawiasów kwardatowych</span>");
         }
         else if(MessageArr[0] == 'dodaj'){
           const wynik = (Number(MessageArr[1])+Number(MessageArr[2]));
@@ -176,7 +166,7 @@ function cloudy(){
           var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
           var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
           var dateTime = date+' godzina: '+time;
-          say("<b>Cloudy: </b>Dziś jest: "+dateTime);
+          say("Dziś jest: "+dateTime);
         }
 
         else if(MessageArr[0] == 'iledoswiat'){
@@ -190,11 +180,11 @@ function cloudy(){
   
           let dayMilliseconds = 1000 * 60 * 60 * 24;
           let remainingDays = Math.ceil((christmasDate.getTime() - today.getTime()) / (dayMilliseconds));
-          say("<b>Cloudy: </b>Zostało " + remainingDays + " dni do swiąt.");
+          say("Zostało " + remainingDays + " dni do swiąt.");
         }
 
         else if(message == 'marta'){
-          say("<b>Vojcik: </b>Dzięki niej Cloudy dostał twarz, jestem wdzięczny za pomoc.");
+          say("thanks");
         }
 
         else if(MessageArr[0] == 'bday'){
