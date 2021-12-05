@@ -49,11 +49,17 @@ function birhtday(myBirthday){
   days = Math.floor(diff/(1000*60*60*24)+1);
 
   if(myBirthday.length == 2){
-      say("Jeszcze <b>"+ days +"</b> dni do twoich urodzin!");
+    say("Jeszcze <b>"+ days +"</b> dni do twoich urodzin!");
   }
   else{
-    age = Number(today.getFullYear() - myBirthday[2] + rok);
-      say("Jeszcze <b>"+ days +"</b> dni do twoich <b>"+ age +"</b> urodzin!");
+      age = Number(today.getFullYear() - myBirthday[2] + rok);
+      let urodziny = new Date(myBirthday[2],(myBirthday[1]-1),myBirthday[0]);
+      if(today < urodziny){
+        say("Jeszcze się nie urodziłeś cwaniaczku"); // Jeśli data z przyszłości
+      }
+      else{
+        say("Jeszcze <b>"+ days +"</b> dni do twoich <b>"+ age +"</b> urodzin!");
+      }
   }
 }
 
