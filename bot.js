@@ -37,9 +37,15 @@ function say(botmessage){
 }
 
 function birhtday(myBirthday){
-  let today, bday, diff, days, age, rok= 0;
+  let today, bday, diff, days, age, rok = 0, cage, cdate;
   today = new Date();
+    if(myBirthday == 'cloudy'){
+      myBirthday = new Array(26, 7, 2021);
+      cdate = true;
+    }
+    
   bday = new Date(today.getFullYear(),myBirthday[1]-1,myBirthday[0]);
+
   if( today.getTime() > bday.getTime()) {
     bday.setFullYear(bday.getFullYear()+1);
     rok = 1;
@@ -50,6 +56,10 @@ function birhtday(myBirthday){
 
   if(myBirthday.length == 2){
     say("Jeszcze <b>"+ days +"</b> dni do twoich urodzin!");
+  }
+  else if(cdate == true){
+    cage = Number(today.getFullYear() - myBirthday[2] + rok);
+    say("Moje <b>"+ cage +"</b> urodziny będą za: <b>"+ days +"</b> dni.");
   }
   else{
       age = Number(today.getFullYear() - myBirthday[2] + rok);
@@ -159,34 +169,23 @@ function cloudy(){
           say(wynik);
         }
 
-
-        // DODAĆ:
-        // !iledowakacji
-        // !iledoswiat
-        // !newyear
-        // !urodziny(vojbota)
-
-
         else if(MessageArr[0] == 'dzis'){
           var today = new Date();
-          var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+          var date = today.getDate()+'.'+(today.getMonth()+1)+'.'+today.getFullYear();
           var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
           var dateTime = date+' godzina: '+time;
           say("Dziś jest: "+dateTime);
         }
 
-        else if(MessageArr[0] == 'iledoswiat'){
+        else if(MessageArr[0] == 'swieta'){
           let today = new Date();
-          let christmasYear = today.getFullYear();
-          if (today.getMonth() == 11 &&
-              today.getDate() > 25){
-            christmasYear = christmasYear + 1;
+          if (today.getMonth() == 11 && today.getDate() > 25){
+            today.setFullYear(today.getFullYear() + 1);
           }
-          let christmasDate = new Date(christmasYear, 11, 25);
-  
-          let dayMilliseconds = 1000 * 60 * 60 * 24;
-          let remainingDays = Math.ceil((christmasDate.getTime() - today.getTime()) / (dayMilliseconds));
-          say("Zostało " + remainingDays + " dni do swiąt.");
+          let christmasDate = new Date(today.getFullYear(), 11, 25);
+          diff = christmasDate.getTime()-today.getTime();
+          days = Math.floor(diff/(1000*60*60*24)+1);
+            say("Zostało " + days + " dni do swiąt.");
         }
 
         else if(message == 'marta'){
@@ -194,27 +193,32 @@ function cloudy(){
         }
 
         else if(MessageArr[0] == 'bday'){
-          let myBirthday = new Array;
-            if(MessageArr.length == 2 && (MessageArr[1].includes('.') || MessageArr[1].includes('-'))){
-              if(MessageArr[1].length == 5){
-                  myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2)]; // dzień / miesiąc
-                  birhtday(myBirthday);
-              }
-              else{
-                  myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2), MessageArr[1].substr(6,4)]; // dzień / miesiąc / rok
-                  birhtday(myBirthday);
-              }
-            }
-            else{
-                if(MessageArr.length == 4){
-                  myBirthday = [MessageArr[1], MessageArr[2], MessageArr[3]]; // dzień / miesiąc / rok
-                  birhtday(myBirthday);
+          if(MessageArr[1] == 'cloudy'){
+            birhtday('cloudy');
+          }
+          else{
+            let myBirthday = new Array;
+              if(MessageArr.length == 2 && (MessageArr[1].includes('.') || MessageArr[1].includes('-'))){
+                if(MessageArr[1].length == 5){
+                    myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2)]; // dzień / miesiąc
+                    birhtday(myBirthday);
                 }
                 else{
-                  myBirthday = [MessageArr[1], MessageArr[2]]; // dzień / miesiąc
-                  birhtday(myBirthday);
+                    myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2), MessageArr[1].substr(6,4)]; // dzień / miesiąc / rok
+                    birhtday(myBirthday);
                 }
-            }
+              }
+              else{
+                  if(MessageArr.length == 4){
+                    myBirthday = [MessageArr[1], MessageArr[2], MessageArr[3]]; // dzień / miesiąc / rok
+                    birhtday(myBirthday);
+                  }
+                  else{
+                    myBirthday = [MessageArr[1], MessageArr[2]]; // dzień / miesiąc
+                    birhtday(myBirthday);
+                  }
+              }
+          }
         }
 
         // else if(MessageArr[0] == 'iledowakacji'){

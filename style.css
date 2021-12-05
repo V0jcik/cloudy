@@ -24,12 +24,6 @@
     background-position: left;
   }
 }
-/* @keyframes reng-anim {
-  0%{background-image: url(gallery/back1.png);}
-  25%{background-image: url(gallery/back2.png);}
-  50%{background-image: url(gallery/back3.png);}
-  100%{background-image: url(gallery/back1.png);}
-} */
 
 body{
   background-color: black;
