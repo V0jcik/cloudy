@@ -33,13 +33,13 @@ function say(botmessage){
     node.innerHTML = ('<b>Cloudy: </b>Wynik działania to: '+botmessage);
     para.appendChild(node);
     }
-    // else if(botmessage == 'bday'){
-    //   dateinp = document.createElement('div');
-    //   dateinp.innerHTML = '<input type = "date" id="bday" onblur="calculateDays()">';
-    //   node = document.createTextNode("Wprowadz datę swoich urodzin:");
-    //   para.appendChild(node);
-    //   para.appendChild(dateinp)
-    // }
+    else if(botmessage == 'bday'){
+      dateinp = document.createElement('div');
+      dateinp.innerHTML = '<input type = "date" id="bday">';
+      node = document.createTextNode("Wprowadz datę swoich urodzin:");
+      para.appendChild(node);
+      para.appendChild(dateinp)
+    }
     else{
     node.innerHTML = (botmessage);
     para.appendChild(node);
@@ -50,6 +50,40 @@ function say(botmessage){
         para.classList.add('botmess');
         space.classList.add('col-md-5');
         clsinput();
+}
+
+
+
+
+
+
+function birhtday(myBirthday){
+  let today, bday, diff, days, age, rok= 0;
+  today = new Date();
+  bday = new Date(today.getFullYear(),myBirthday[1]-1,myBirthday[0]);
+  if( today.getTime() > bday.getTime()) {
+    bday.setFullYear(bday.getFullYear()+1);
+    rok = 1;
+  }
+  
+  diff = bday.getTime()-today.getTime();
+  days = Math.floor(diff/(1000*60*60*24)+1);
+
+  if(myBirthday.length == 2){
+      say("Jeszcze <b>"+ days +"</b> dni do twoich urodzin!");
+  }
+  else{
+    age = Number(today.getFullYear() - myBirthday[2] + rok);
+      say("Jeszcze <b>"+ days +"</b> dni do twoich <b>"+ age +"</b> urodzin!");
+  }
+}
+
+function opegg(url){
+  var popup = window.open(url, "popup", "fullscreen");
+  if (popup.outerWidth < screen.availWidth || popup.outerHeight < screen.availHeight){
+    popup.moveTo(0,0);
+    popup.resizeTo(screen.availWidth, screen.availHeight);
+  }
 }
 
 function cloudy(){
@@ -75,39 +109,36 @@ function cloudy(){
         if(message == 'hi'){
           say("<b>Cloudy: </b>Witam Cię człowieku, jestem Cloudy. \nWięcej o mnie -> !cloudy");
         }
+        
         else if(message == 'cloudy'){
           say("<b>Cloudy: </b>Jestem Cloudy, powstałem 26.07.2021. Moim stwórcą jest Vojcik. Na razie nie umiem zbyt wiele, ale z czasem uczę się nowych rzeczy. Listę moich poleceń sprawdzisz wpisując !clist");
         }
+
         else if(message == 'clist'){
           say("<b>Cloudy: </b>Dostępne komendy: \n!hi | !cloudy | !clear | !calc | !dzis | !iledoswiat");
         }
+
         else if(MessageArr[0] == 'idz'){
           if(MessageArr[1] == 'rick'){
-              clsinput();
-              var popup = window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "popup", "fullscreen");
-              if (popup.outerWidth < screen.availWidth || popup.outerHeight < screen.availHeight){
-                popup.moveTo(0,0);
-                popup.resizeTo(screen.availWidth, screen.availHeight);
-              }
+            clsinput();
+            opegg("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "popup", "fullscreen");
           }
           else if(MessageArr[1] == 'mateusz'){
-            input.value = "";
-            var popup = window.open("https://www.youtube.com/watch?v=NSD_TfnWttI", "popup", "fullscreen");
-            if (popup.outerWidth < screen.availWidth || popup.outerHeight < screen.availHeight){
-              popup.moveTo(0,0);
-              popup.resizeTo(screen.availWidth, screen.availHeight);
-            }
-        }
+            clsinput();
+            opegg("https://www.youtube.com/watch?v=NSD_TfnWttI", "popup", "fullscreen");
+          }
           else{
             window.open(MessageArr[1], '_blank').focus();
             clsinput();
           }
         }
+
         else if(message == 'clear'){
           document.getElementById('row').innerHTML = '<p></p>';
           document.getElementById('clbutton').click();
           clsinput();
         }
+
         else if(MessageArr[0] == 'calc'){
           say("<b>Cloudy: </b>Potrafię liczyć! \n !dodaj [a] [b] \n !odejmij [a] [b] \n !podziel [a] [b] \n !pomnoz [a] [b] \n !poteguj [a] [b] \n <span style='font-size:11px;'>*bez nawiasów kwardatowych</span>");
         }
@@ -147,6 +178,7 @@ function cloudy(){
           var dateTime = date+' godzina: '+time;
           say("<b>Cloudy: </b>Dziś jest: "+dateTime);
         }
+
         else if(MessageArr[0] == 'iledoswiat'){
           let today = new Date();
           let christmasYear = today.getFullYear();
@@ -160,9 +192,35 @@ function cloudy(){
           let remainingDays = Math.ceil((christmasDate.getTime() - today.getTime()) / (dayMilliseconds));
           say("<b>Cloudy: </b>Zostało " + remainingDays + " dni do swiąt.");
         }
+
         else if(message == 'marta'){
           say("<b>Vojcik: </b>Dzięki niej Cloudy dostał twarz, jestem wdzięczny za pomoc.");
         }
+
+        else if(MessageArr[0] == 'bday'){
+          let myBirthday = new Array;
+            if(MessageArr.length == 2 && (MessageArr[1].includes('.') || MessageArr[1].includes('-'))){
+              if(MessageArr[1].length == 5){
+                  myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2)]; // dzień / miesiąc
+                  birhtday(myBirthday);
+              }
+              else{
+                  myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2), MessageArr[1].substr(6,4)]; // dzień / miesiąc / rok
+                  birhtday(myBirthday);
+              }
+            }
+            else{
+                if(MessageArr.length == 4){
+                  myBirthday = [MessageArr[1], MessageArr[2], MessageArr[3]]; // dzień / miesiąc / rok
+                  birhtday(myBirthday);
+                }
+                else{
+                  myBirthday = [MessageArr[1], MessageArr[2]]; // dzień / miesiąc
+                  birhtday(myBirthday);
+                }
+            }
+        }
+
         // else if(MessageArr[0] == 'iledowakacji'){
         //   let today = new Date();
         //   let christmasYear = today.getFullYear();
