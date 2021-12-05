@@ -8,17 +8,6 @@ document.getElementById('name')
   }
 });
 
-let myDiv = document.getElementById("chat");
-const input = document.getElementById('name');
-const comprompt = "!"; //utworzenie znaku wywołującego komendy
-let disable = "no";
-
-function bl(){
-  disable = "no";
-  document.getElementById('name').disabled = false;
-  say("<b>Cloudy: </b>Jeśli przemyślałeś/aś swoje zachowanie, to witam z powrotem :D");
-}
-
 function clsinput(){
   input.value = "";
   myDiv.scrollTop = myDiv.scrollHeight; //scroll w dół
@@ -75,6 +64,17 @@ function opegg(url){
     popup.resizeTo(screen.availWidth, screen.availHeight);
   }
 }
+
+function bl(){
+  disable = "no";
+  document.getElementById('name').disabled = false;
+  say("Jeśli przemyślałeś/aś swoje zachowanie, to witam z powrotem :D");
+}
+
+let myDiv = document.getElementById("chat");
+const input = document.getElementById('name');
+const comprompt = "!"; //utworzenie znaku wywołującego komendy
+let disable = "no";
 
 function cloudy(){
     let message = input.value;

@@ -18,7 +18,7 @@ function validate_text(){
         disable = "yes";
         document.getElementById('name').disabled = true;
         setTimeout(bl, 10000);
-        say("<b>Cloudy: </b>Możliwość interakcji ze mną została zablokowana, masz chwilę żeby ochłonąć :)");
+        say("Możliwość interakcji ze mną została zablokowana, masz chwilę żeby ochłonąć :)");
         clsinput();
   }
   else{
