@@ -82,7 +82,8 @@ function opegg(url){
 }
 
 function bl(){
-  disable = "no";
+  disable = false;
+  cloudyimg.style.backgroundImage = "url('gallery/Cloudy.png')";
   document.getElementById('name').disabled = false;
   say("Jeśli przemyślałeś/aś swoje zachowanie, to witam z powrotem :D");
 }
@@ -90,7 +91,13 @@ function bl(){
 let myDiv = document.getElementById("chat");
 const input = document.getElementById('name');
 const comprompt = "!"; //utworzenie znaku wywołującego komendy
-let disable = "no";
+let disable = false;
+
+let minicloudyimg = document.getElementById('minicloudyimg');
+let cloudyimg = document.getElementById('cloudyimg');
+  cloudyimg.style.backgroundImage = "url('gallery/Cloudy.png')";
+
+
 
 function cloudy(){
     let message = input.value;

@@ -15,7 +15,8 @@ function validate_text(){
     }
   }
   if(red_alert>0){
-        disable = "yes";
+        disable = true;
+        cloudyimg.style.backgroundImage = "url('gallery/Angry.png')";
         document.getElementById('name').disabled = true;
         setTimeout(bl, 10000);
         say("Możliwość interakcji ze mną została zablokowana, masz chwilę żeby ochłonąć :)");
