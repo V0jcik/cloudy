@@ -93,8 +93,8 @@ const input = document.getElementById('name');
 const comprompt = "!"; //utworzenie znaku wywołującego komendy
 let disable = false;
 
-let minicloudyimg = document.getElementById('minicloudyimg');
 let cloudyimg = document.getElementById('cloudyimg');
+  cloudyimg.style.backgroundImage = "url('gallery/Angry.png')";
   cloudyimg.style.backgroundImage = "url('gallery/Cloudy.png')";
 
 
