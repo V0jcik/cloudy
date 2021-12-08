@@ -200,14 +200,8 @@ function cloudy(){
         }
 
         else if(MessageArr[0] == 'bday'){
-          if(MessageArr[1] == ''){
-            say("!bday <b>data urodzin</b>");
-          }
-          else{
             if(MessageArr[1] == 'cloudy'){
             birhtday('cloudy');
-          }
-          else{
             let myBirthday = new Array;
               if(MessageArr.length == 2 && (MessageArr[1].includes('.') || MessageArr[1].includes('-'))){
                 if(MessageArr[1].length == 5){
@@ -229,7 +223,6 @@ function cloudy(){
                     birhtday(myBirthday);
                   }
               }
-            }
           }
         }
         else{
