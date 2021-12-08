@@ -200,10 +200,6 @@ function cloudy(){
         }
 
         else if(MessageArr[0] == 'bday'){
-            if(MessageArr.length == 1){
-              say("Wpisz !bday <b>data twoich urodzin</b>");
-            }
-          else{
             if(MessageArr[1] == 'cloudy'){
             birhtday('cloudy');
               
@@ -228,7 +224,6 @@ function cloudy(){
                     birhtday(myBirthday);
                   }
               }
-            }
           }
           
           
