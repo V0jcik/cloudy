@@ -203,7 +203,8 @@ function cloudy(){
           if(MessageArr[1] == ''){
             say("!bday <b>data urodzin</b>");
           }
-          if(MessageArr[1] == 'cloudy'){
+          else{
+            if(MessageArr[1] == 'cloudy'){
             birhtday('cloudy');
           }
           else{
@@ -228,6 +229,7 @@ function cloudy(){
                     birhtday(myBirthday);
                   }
               }
+            }
           }
         }
         else{
