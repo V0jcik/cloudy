@@ -128,7 +128,7 @@ function cloudy(){
         }
 
         else if(message == 'clist'){
-          say("Dostępne komendy: \n!hi | !cloudy | !clear | !calc | !dzis | !iledoswiat");
+          say("Dostępne komendy: \n!hi | !cloudy | !clear | !calc | !dzis | !swieta | !bday");
         }
 
         else if(MessageArr[0] == 'idz'){
@@ -200,6 +200,9 @@ function cloudy(){
         }
 
         else if(MessageArr[0] == 'bday'){
+          if(MessageArr[1] == ''){
+            say("!bday <b>data urodzin</b>");
+          }
           if(MessageArr[1] == 'cloudy'){
             birhtday('cloudy');
           }
@@ -227,35 +230,9 @@ function cloudy(){
               }
           }
         }
-
-        // else if(MessageArr[0] == 'iledowakacji'){
-        //   let today = new Date();
-        //   let christmasYear = today.getFullYear();
-        //   if (today.getMonth() == 6 &&
-        //       today.getDate() > 1){
-        //     christmasYear = christmasYear + 1;
-        //   }
-        //   let christmasDate = new Date(christmasYear, 6, 1);
-  
-        //   let dayMilliseconds = 1000 * 60 * 60 * 24;
-        //   let remainingDays = Math.ceil((christmasDate.getTime() - today.getTime()) / (dayMilliseconds));
-        //   say("Zostało " + remainingDays + " dni do wakacji.");
-        // }
-        // else if(MessageArr[0] == 'urodziny'){
-          
-        // }
         else{
           clsinput();
         }
-        // else if(message == '!vojbot'){
-        //         const para = document.createElement('p');
-        //         const node = document.createTextNode("Hello I'm VojBot. Checkout my commands  !help");
-        //         para.appendChild(node);
-        //         const element = document.getElementById("chat");
-        //         element.appendChild(para);
-        //         document.getElementById('name').value = " ";
-        //         para.classList.add('botmess');
-        // }
       }
       else{
         clsinput();
