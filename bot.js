@@ -199,7 +199,7 @@ function cloudy(){
         }
 
         else if(MessageArr[0] == 'bday'){
-          if(MessageArr.length > 2){
+          if(MessageArr.length < 2){
             say("Wpisz: !bday <b title='Format daty: DD.MM.YYYY, rok nie jest wymagany, zamiast kropek może być myślnik lub poprostu spacja'>data urodzin</b>");
           }
           else{
