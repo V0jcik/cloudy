@@ -98,7 +98,6 @@ let cloudyimg = document.getElementById('cloudyimg');
   cloudyimg.style.backgroundImage = "url('gallery/Cloudy.png')";
 
 
-
 function cloudy(){
     let message = input.value;
     if(message !== ""){
@@ -200,34 +199,37 @@ function cloudy(){
         }
 
         else if(MessageArr[0] == 'bday'){
+          if(MessageArr.length > 2){
+            say("Wpisz: !bday <b title='Format daty: DD.MM.YYYY, rok nie jest wymagany, zamiast kropek może być myślnik lub poprostu spacja'>data urodzin</b>");
+          }
+          else{
             if(MessageArr[1] == 'cloudy'){
-            birhtday('cloudy');
-              
-            let myBirthday = new Array;
+              birhtday('cloudy');
+            }
+            else{
+              let myBirthday = new Array;
               if(MessageArr.length == 2 && (MessageArr[1].includes('.') || MessageArr[1].includes('-'))){
                 if(MessageArr[1].length == 5){
-                    myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2)]; // dzień / miesiąc
-                    birhtday(myBirthday);
+                  myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2)]; // dzień / miesiąc
+                  birhtday(myBirthday);
                 }
                 else{
-                    myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2), MessageArr[1].substr(6,4)]; // dzień / miesiąc / rok
-                    birhtday(myBirthday);
+                  myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2), MessageArr[1].substr(6,4)]; // dzień / miesiąc / rok
+                  birhtday(myBirthday);
                 }
               }
               else{
-                  if(MessageArr.length == 4){
-                    myBirthday = [MessageArr[1], MessageArr[2], MessageArr[3]]; // dzień / miesiąc / rok
-                    birhtday(myBirthday);
-                  }
-                  else{
-                    myBirthday = [MessageArr[1], MessageArr[2]]; // dzień / miesiąc
-                    birhtday(myBirthday);
-                  }
+                if(MessageArr.length == 4){
+                  myBirthday = [MessageArr[1], MessageArr[2], MessageArr[3]]; // dzień / miesiąc / rok
+                  birhtday(myBirthday);
+                }
+                else{
+                  myBirthday = [MessageArr[1], MessageArr[2]]; // dzień / miesiąc
+                  birhtday(myBirthday);
+                }
               }
+            }
           }
-        }
-          
-          
         }
         else{
           clsinput();
