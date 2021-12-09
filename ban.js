@@ -28,7 +28,7 @@ function validate_text(){
 }
 window.onload=reset_alert;
 
-var bannable = new Array('nigger','chuj','chuja', 'chujek', 'chuju', 'chujem', 'chujnia',
+var bannable = new Array('badword','nigger','chuj','chuja', 'chujek', 'chuju', 'chujem', 'chujnia',
 'chujowy', 'chujowa', 'chujowe', 'cipa', 'cipę', 'cipe', 'cipą',
 'cipie', 'dojebać','dojebac', 'dojebie', 'dojebał', 'dojebal',
 'dojebała', 'dojebala', 'dojebałem', 'dojebalem', 'dojebałam',
