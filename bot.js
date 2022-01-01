@@ -37,39 +37,75 @@ function say(botmessage){
 }
 
 function birhtday(myBirthday){
-  let today, bday, diff, days, age, rok = 0, cage, cdate;
+  let today, bday, diff, days, age, rok = 0, cage, cloudyDate, switchMonth, maxDaysInMonth;
   today = new Date();
-    if(myBirthday == 'cloudy'){
-      myBirthday = new Array(26, 7, 2021);
-      cdate = true;
-    }
-    
-  bday = new Date(today.getFullYear(),myBirthday[1]-1,myBirthday[0]);
 
-  if( today.getTime() > bday.getTime()) {
-    bday.setFullYear(bday.getFullYear()+1);
-    rok = 1;
-  }
-  
-  diff = bday.getTime()-today.getTime();
-  days = Math.floor(diff/(1000*60*60*24)+1);
-
-  if(myBirthday.length == 2){
-    say("Jeszcze <b>"+ days +"</b> dni do twoich urodzin!");
-  }
-  else if(cdate == true){
-    cage = Number(today.getFullYear() - myBirthday[2] + rok);
-    say("Moje <b>"+ cage +"</b> urodziny będą za: <b>"+ days +"</b> dni.");
+  if(myBirthday[1] > 12){
+    say("Podałeś niepoprawny miesiąc");
   }
   else{
-      age = Number(today.getFullYear() - myBirthday[2] + rok);
-      let urodziny = new Date(myBirthday[2],(myBirthday[1]-1),myBirthday[0]);
-      if(today < urodziny){
-        say("Jeszcze się nie urodziłeś cwaniaczku"); // Jeśli data z przyszłości
+    switchMonth = myBirthday[1];
+    switch(switchMonth) {
+      case 1: smonth = 'Styczeń', maxDaysInMonth = '31'; break;
+      case 2: smonth = 'Luty';
+              if (myBirthday[2] % 4 == 0 && myBirthday[2] % 100 != 0 || myBirthday[2] % 400 == 0){maxDaysInMonth = '29'; break;}
+              else{maxDaysInMonth = '28'; break;}
+      case 3: smonth = 'Marzec', maxDaysInMonth = '31'; break;
+      case 4: smonth = 'Kwiecień', maxDaysInMonth = '30'; break;
+      case 5: smonth = 'Maj', maxDaysInMonth = '31'; break;
+      case 6: smonth = 'Czerwiec', maxDaysInMonth = '30'; break;
+      case 7: smonth = 'Lipiec', maxDaysInMonth = '31'; break;
+      case 8: smonth = 'Sierpień', maxDaysInMonth = '31'; break;
+      case 9: smonth = 'Wrzesień', maxDaysInMonth = '30'; break;
+      case 10: smonth = 'Październik', maxDaysInMonth = '31'; break;
+      case 11: smonth = 'Listopad', maxDaysInMonth = '30'; break;
+      case 12: smonth = 'Grudzień', maxDaysInMonth = '31'; break;
+      default: smonth = '[miesiąc]';
+    }
+
+    if(myBirthday[0] > maxDaysInMonth){
+      say(smonth + ' ma tylko ' + maxDaysInMonth + ' dni. \nWprowadź poprawną datę.')
+    }
+    else{
+      if(myBirthday[0] <= maxDaysInMonth){
+
+            if(myBirthday == 'cloudy'){
+              myBirthday = new Array(26, 7, 2021);
+              cloudyDate = true;
+            }
+            
+          bday = new Date(today.getFullYear(),myBirthday[1]-1,myBirthday[0]);
+  
+          if( today.getTime() > bday.getTime()) {
+            bday.setFullYear(bday.getFullYear()+1);
+            rok = 1;
+          }
+          
+          diff = bday.getTime()-today.getTime();
+          days = Math.floor(diff/(1000*60*60*24)+1);
+  
+          if(myBirthday.length == 2){
+            say("Jeszcze <b>"+ days +"</b> dni do twoich urodzin!");
+          }
+          else if(cloudyDate == true){
+            cage = Number(today.getFullYear() - myBirthday[2] + rok);
+            say("Moje <b>"+ cage +"</b> urodziny będą za: <b>"+ days +"</b> dni.");
+          }
+          else{
+              age = Number(today.getFullYear() - myBirthday[2] + rok);
+              let urodziny = new Date(myBirthday[2],(myBirthday[1]-1),myBirthday[0]);
+              if(today < urodziny){
+                say("Jeszcze się nie urodziłeś cwaniaczku"); // Jeśli data z przyszłości
+              }
+              else{
+                say("Jeszcze <b>"+ days +"</b> dni do twoich <b>"+ age +"</b> urodzin!");
+              }
+          }
       }
       else{
-        say("Jeszcze <b>"+ days +"</b> dni do twoich <b>"+ age +"</b> urodzin!");
+        say("Podałeś złą wartość");
       }
+    }
   }
 }
 
@@ -90,7 +126,7 @@ function bl(){
 
 let myDiv = document.getElementById("chat");
 const input = document.getElementById('name');
-const comprompt = "!"; //utworzenie znaku wywołującego komendy
+const comprompt = "!"; // znak zachęty
 let disable = false;
 
 let cloudyimg = document.getElementById('cloudyimg');
@@ -191,7 +227,12 @@ function cloudy(){
           let christmasDate = new Date(today.getFullYear(), 11, 25);
           diff = christmasDate.getTime()-today.getTime();
           days = Math.floor(diff/(1000*60*60*24)+1);
-            say("Zostało " + days + " dni do swiąt.");
+            if(days == 0){
+              say("Wesołych Świąt!");
+            }
+            else{
+              say("Zostało " + days + " dni do swiąt.");
+            }
         }
 
         else if(message == 'marta'){
@@ -210,21 +251,21 @@ function cloudy(){
               let myBirthday = new Array;
               if(MessageArr.length == 2 && (MessageArr[1].includes('.') || MessageArr[1].includes('-'))){
                 if(MessageArr[1].length == 5){
-                  myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2)]; // dzień / miesiąc
+                  myBirthday = [Number(MessageArr[1].substr(0,2)), Number(MessageArr[1].substr(3,2))]; // dzień / miesiąc
                   birhtday(myBirthday);
                 }
                 else{
-                  myBirthday = [MessageArr[1].substr(0,2), MessageArr[1].substr(3,2), MessageArr[1].substr(6,4)]; // dzień / miesiąc / rok
+                  myBirthday = [Number(MessageArr[1].substr(0,2)), Number(MessageArr[1].substr(3,2)), Number(MessageArr[1].substr(6,4))]; // dzień / miesiąc / rok
                   birhtday(myBirthday);
                 }
               }
               else{
                 if(MessageArr.length == 4){
-                  myBirthday = [MessageArr[1], MessageArr[2], MessageArr[3]]; // dzień / miesiąc / rok
+                  myBirthday = [Number(MessageArr[1]), Number(MessageArr[2]), Number(MessageArr[3])]; // dzień / miesiąc / rok
                   birhtday(myBirthday);
                 }
                 else{
-                  myBirthday = [MessageArr[1], MessageArr[2]]; // dzień / miesiąc
+                  myBirthday = [Number(MessageArr[1]), Number(MessageArr[2])]; // dzień / miesiąc
                   birhtday(myBirthday);
                 }
               }
