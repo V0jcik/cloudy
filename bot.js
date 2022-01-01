@@ -64,7 +64,7 @@ function birhtday(myBirthday){
     }
 
     if(myBirthday[0] > maxDaysInMonth){
-      say(smonth + ' ma tylko ' + maxDaysInMonth + ' dni. \nWprowadź poprawną datę.')
+      say(smonth + ' ma tylko ' + maxDaysInMonth + ' dni. Wprowadź poprawną datę.')
     }
     else{
       if(myBirthday[0] <= maxDaysInMonth){
