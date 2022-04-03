@@ -1,12 +1,18 @@
-document.getElementById('name')
-.addEventListener('keyup', function(event) {
-  if (event.code === 'Enter')
-  {
+let lastMess = "";
+document.getElementById('name').addEventListener('keyup', function(event){
+  if (event.code === 'Enter'){
     event.preventDefault();
     // validate_text();
+    lastMess = input.value;
     validate_text();
   }
+  else if (event.code === 'ArrowUp'){
+    event.preventDefault();
+      // up arrow
+      input.value = lastMess;
+    }
 });
+
 
 function clsinput(){
   input.value = "";
@@ -41,7 +47,7 @@ function birhtday(myBirthday){
   today = new Date();
 
   if(myBirthday[1] > 12){
-    say("Podałeś niepoprawny miesiąc");
+    say("Podałeś niepoprawny miesiąc, rok ma 12 miesięcy");
   }
   else{
     switchMonth = myBirthday[1];
@@ -62,20 +68,19 @@ function birhtday(myBirthday){
       case 12: smonth = 'Grudzień', maxDaysInMonth = '31'; break;
       default: smonth = '[miesiąc]';
     }
-
     if(myBirthday[0] > maxDaysInMonth){
       say(smonth + ' ma tylko ' + maxDaysInMonth + ' dni. Wprowadź poprawną datę.')
     }
+    else if(myBirthday[0] < 0 || myBirthday[1] < 0 || myBirthday[2] < 0){
+      say("Podałeś błędną datę")
+    }
     else{
-      if(myBirthday[0] <= maxDaysInMonth){
-
-            if(myBirthday == 'cloudy'){
-              myBirthday = new Array(26, 7, 2021);
-              cloudyDate = true;
-            }
-            
+      if(myBirthday == 'cloudy'){
+        myBirthday = new Array(26, 7, 2021);
+        cloudyDate = true;
+      }
           bday = new Date(today.getFullYear(),myBirthday[1]-1,myBirthday[0]);
-  
+
           if( today.getTime() > bday.getTime()) {
             bday.setFullYear(bday.getFullYear()+1);
             rok = 1;
@@ -83,7 +88,7 @@ function birhtday(myBirthday){
           
           diff = bday.getTime()-today.getTime();
           days = Math.floor(diff/(1000*60*60*24)+1);
-  
+          
           if(myBirthday.length == 2){
             say("Jeszcze <b>"+ days +"</b> dni do twoich urodzin!");
           }
@@ -101,10 +106,6 @@ function birhtday(myBirthday){
                 say("Jeszcze <b>"+ days +"</b> dni do twoich <b>"+ age +"</b> urodzin!");
               }
           }
-      }
-      else{
-        say("Podałeś złą wartość");
-      }
     }
   }
 }
@@ -281,5 +282,3 @@ function cloudy(){
       }
     }
 }
-
-
