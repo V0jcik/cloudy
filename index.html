@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,7 +19,7 @@
         <div class="header col-md-8 my-1">
           <div class="bg">
             <span class="h3">Cloudy</span>
-            <span class="fs-6">to chat bot, odpowiada na zadane mu polecenia. Przywitaj się !hi</span>
+            <span class="fs-6">to chat bot, odpowiada na zadane mu polecenia. Przywitaj się <button class="command" onclick="javascript:(input.value = '!hi')(input.focus())">!hi</button></span>
           </div>
         </div>
       </div>
@@ -36,7 +35,7 @@
                 </div>
                 <div class="row">
                   <div class="col-12 sparea">
-                    <input type="text" id="name" autocomplete="off" class="col-12">
+                    <input type="text" id="name" autocomplete="off" class="col-12" onfocus="this.setSelectionRange(this.value.length, this.value.length);">
                     <button id="button" onclick="validate_text()">Enter</button>
                   </div>
                 </div>
@@ -45,24 +44,23 @@
       </div>
     </div>
   </div>
-
-      <button id="clbutton" type="button" class="btn btn-primary popup" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content clearpop">
-            <div class="modal-header cl">
-              <h5 class="modal-title" id="exampleModalLabel">Chat został wyczyszczony</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-          </div>
-        </div>
-    </div>
-
   </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="js/bootstrap.js"></script>
 <script src="bot.js"></script>
 <script src="ban.js"></script>
+
+
+<ul class="background">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>

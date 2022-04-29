@@ -3,7 +3,6 @@ document.getElementById('name').addEventListener('keyup', function(event){
   if (event.code === 'Enter'){
     event.preventDefault();
     // validate_text();
-    lastMess = input.value;
     validate_text();
   }
   else if (event.code === 'ArrowUp'){
@@ -11,8 +10,17 @@ document.getElementById('name').addEventListener('keyup', function(event){
       // up arrow
       input.value = lastMess;
     }
+  else if (event.code === 'ArrowDown'){
+    event.preventDefault();
+      // down arrow
+      input.value = "";
+    }
 });
 
+var commands = document.getElementsByName('command');
+for (var i = 0; i < commands.length; i++) {
+  commands[i].addEventListener('click', function(){document.getElementById('input').focus()});
+}
 
 function clsinput(){
   input.value = "";
@@ -111,6 +119,7 @@ function birhtday(myBirthday){
 }
 
 function opegg(url){
+  clsinput()
   var popup = window.open(url, "popup", "fullscreen");
   if (popup.outerWidth < screen.availWidth || popup.outerHeight < screen.availHeight){
     popup.moveTo(0,0);
@@ -154,69 +163,59 @@ function cloudy(){
         var MessageArr = message.match(/\S+/gi);
         message = message.replace(comprompt, ""); //usunięcie znaku zachęty ze stringa
         MessageArr[0] = MessageArr[0].replace(comprompt,""); //usunięcie znaku zachęty ze stringa
-
-        if(message == 'hi'){
-          say("Witam Cię człowieku, jestem Cloudy. \nWięcej o mnie -> !cloudy");
-        }
-
-        else if(message == 'cloudy'){
-          say("Jestem Cloudy, powstałem 26.07.2021. Moim stwórcą jest Vojcik. Na razie nie umiem zbyt wiele, ale z czasem uczę się nowych rzeczy. Listę moich poleceń sprawdzisz wpisując !clist");
-        }
-
-        else if(message == 'clist'){
-          say("Dostępne komendy: \n!hi | !cloudy | !clear | !calc | !dzis | !swieta | !bday");
-        }
-
-        else if(MessageArr[0] == 'idz'){
-          if(MessageArr[1] == 'rick'){
+        
+        switch(MessageArr[0]){
+          case "hi":
+            say(`Witam Cię człowieku, jestem Cloudy. \nWięcej o mnie <button name='command' class='command' onclick="javascript:(input.value = '!cloudy')(input.focus())">!cloudy</button>`);
+            break;
+          case "cloudy":
+            say(`Jestem Cloudy, powstałem 26.07.2021. Moim stwórcą jest <b>Vojcik</b>. Na razie nie umiem zbyt wiele, ale z czasem uczę się nowych rzeczy. Listę moich poleceń sprawdzisz wpisując <button name='command' class='command' onclick="javascript:(input.value = '!help')(input.focus())">!help</button>`);
+            break;
+          case "help":
+            say(`Dostępne komendy: \n<button name='command' class='command' onclick="javascript:(input.value = '!hi')(input.focus())">!hi</button> | <button name='command' class='command' onclick="javascript:(input.value = '!cloudy')(input.focus())">!cloudy</button> | <button name='command' class='command' onclick="javascript:(input.value = '!clear')(input.focus())">!clear</button> | <button name='command' class='command' onclick="javascript:(input.value = '!calc')(input.focus())">!calc</button> | <button name='command' class='command' onclick="javascript:(input.value = '!dzis')(input.focus())">!dzis</button> | <button name='command' class='command' onclick="javascript:(input.value = '!swieta')(input.focus())">!swieta</button> | <button name='command' class='command' onclick="javascript:(input.value = '!bday')(input.focus())">!bday</button>`);
+            break;
+          case "go":
+            (MessageArr[1] == 'rick' ? opegg("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "popup", "fullscreen") : (MessageArr[1] == 'mateusz' ? opegg("https://www.youtube.com/watch?v=NSD_TfnWttI", "popup", "fullscreen") : window.open(MessageArr[1], '_blank').focus(), clsinput()));
+            break;
+          case "clear":
+            document.getElementById('row').innerHTML = '<p></p>';
             clsinput();
-            opegg("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "popup", "fullscreen");
-          }
-          else if(MessageArr[1] == 'mateusz'){
-            clsinput();
-            opegg("https://www.youtube.com/watch?v=NSD_TfnWttI", "popup", "fullscreen");
-          }
-          else{
-            window.open(MessageArr[1], '_blank').focus();
-            clsinput();
-          }
+            break;
+          case "marta":
+            say("thanks");
+            break;
+          default: clsinput();;
         }
 
-        else if(message == 'clear'){
-          document.getElementById('row').innerHTML = '<p></p>';
-          document.getElementById('clbutton').click();
-          clsinput();
-        }
-
-        else if(MessageArr[0] == 'calc'){
-          say("Potrafię liczyć! \n !dodaj [a] [b] \n !odejmij [a] [b] \n !podziel [a] [b] \n !pomnoz [a] [b] \n !poteguj [a] [b] \n <span style='font-size:11px;'>*bez nawiasów kwardatowych</span>");
+        if(MessageArr[0] == 'calc'){
+          say(`Potrafię liczyć! \n <button name='command' class='command' onclick="javascript:(input.value = '!dodaj ')(input.focus())">!dodaj</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!odejmij ')(input.focus())">!odejmij</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!podziel ')(input.focus())">!podziel</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!pomnoz ')(input.focus())">!pomnoz</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!poteguj ')(input.focus())">!poteguj</button> [a] [b] \n <span style='font-size:11px;'>*bez nawiasów kwardatowych</span>`);
         }
         else if(MessageArr[0] == 'dodaj'){
           const wynik = (Number(MessageArr[1])+Number(MessageArr[2]));
-          say(wynik);
+          (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
         }
         else if(MessageArr[0] == 'odejmij'){
           const wynik = (Number(MessageArr[1])-Number(MessageArr[2]));
-          say(wynik);
+          (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
         }
         else if(MessageArr[0] == 'podziel'){
           const wynik = (Number(MessageArr[1])/Number(MessageArr[2]));
-          say(wynik);
+          (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
         }
         else if(MessageArr[0] == 'pomnoz'){
           const wynik = (Number(MessageArr[1])*Number(MessageArr[2]));
-          say(wynik);
+          (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
         }
         else if(MessageArr[0] == 'poteguj'){
           const wynik = Math.pow(Number(MessageArr[1]),Number(MessageArr[2]));
-          say(wynik);
+          (isNaN(MessageArr[1]) ? say(`Podaj mi podstawę potęgi!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi wykładnik potęgi!`) : say(wynik)));
         }
 
         else if(MessageArr[0] == 'dzis'){
-          var today = new Date();
-          var date = today.getDate()+'.'+(today.getMonth()+1)+'.'+today.getFullYear();
-          var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-          var dateTime = date+' godzina: '+time;
+          let today = new Date();
+          let date = today.getDate()+'.'+(today.getMonth()+1)+'.'+today.getFullYear();
+          let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+          let dateTime = date+' godzina: '+time;
           say("Dziś jest: "+dateTime);
         }
 
@@ -236,27 +235,58 @@ function cloudy(){
             }
         }
 
-        else if(message == 'marta'){
-          say("thanks");
-        }
-
         else if(MessageArr[0] == 'bday'){
-          if(MessageArr.length < 2){
-            say("Wpisz: !bday <b title='Format daty: DD.MM.YYYY, rok nie jest wymagany, zamiast kropek może być myślnik lub poprostu spacja'>data urodzin</b>");
+          if(MessageArr.length == 1){
+            say("Podaj dzień i miesiąc lub pełną datę\n<span style='font-size:11px;'><b>Przyjmowane formaty daty:</b>\nDD.MM.RRRR\nDD-MM-RRRR\nDD MM RRRR\n*rok nie jest wymagany</span>");
+            input.focus();
           }
           else{
             if(MessageArr[1] == 'cloudy'){
               birhtday('cloudy');
             }
+            else if(MessageArr.length == 2 && MessageArr[1].length < 3){
+              say("Nie jestem w stanie obliczyć ilości dni do twoich urodzin jeśli podasz mi tylko jeden argument");
+            }
             else{
               let myBirthday = new Array;
+              let index;
+                  if(MessageArr[1].includes('.')){
+                    index = MessageArr[1].indexOf('.');
+                  }
+                  else{
+                    index = MessageArr[1].indexOf('-')
+                  }
               if(MessageArr.length == 2 && (MessageArr[1].includes('.') || MessageArr[1].includes('-'))){
-                if(MessageArr[1].length == 5){
+                
+                if(MessageArr[1].length == 3){
+                  myBirthday = [Number(MessageArr[1].substr(0,1)), Number(MessageArr[1].substr(2,1))]; // dzień / miesiąc
+                  birhtday(myBirthday);
+                }
+                else if(MessageArr[1].length == 4){
+                  if(index == 1){
+                    myBirthday = [Number(MessageArr[1].substr(0,index)), Number(MessageArr[1].substr(index+1,index+1))]; // dzień / miesiąc
+                  }
+                  else if(index == 2){
+                    myBirthday = [Number(MessageArr[1].substr(0,index)), Number(MessageArr[1].substr(index+1))]; // dzień / miesiąc
+                  }
+                  birhtday(myBirthday);
+                }
+                else if(MessageArr[1].length == 5){
                   myBirthday = [Number(MessageArr[1].substr(0,2)), Number(MessageArr[1].substr(3,2))]; // dzień / miesiąc
                   birhtday(myBirthday);
                 }
                 else{
                   myBirthday = [Number(MessageArr[1].substr(0,2)), Number(MessageArr[1].substr(3,2)), Number(MessageArr[1].substr(6,4))]; // dzień / miesiąc / rok
+                  birhtday(myBirthday);
+                }
+              }
+              else if(MessageArr.length == 3){
+                if(MessageArr[1].includes('.') || MessageArr[1].includes('-')){
+                  myBirthday = [Number(MessageArr[1].substr(0,2)), Number(MessageArr[1].substr(3,2)), Number(MessageArr[2])]; // dzień / miesiąc / rok
+                  birhtday(myBirthday);
+                }
+                else{
+                  myBirthday = [Number(MessageArr[1]), Number(MessageArr[2].substr(0,2)), Number(MessageArr[2].substr(3,4))]; // dzień / miesiąc / rok
                   birhtday(myBirthday);
                 }
               }

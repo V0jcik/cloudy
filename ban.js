@@ -4,6 +4,7 @@ function reset_alert(){
   red_alert=0;
 }
 function validate_text(){
+  lastMess = input.value;
   reset_alert();
   var text = document.getElementById('name').value;
   for(var i=0; i<bannable.length; i++){
