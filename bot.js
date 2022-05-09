@@ -31,7 +31,7 @@ function say(botmessage){
   const para = document.createElement('p');
   const space = document.createElement('div');
   let node = document.createElement('span');
-      //Jeśli przekazana zmienna to cyfra, dodaje frazę "Wynik działania to"
+    //Jeśli przekazana zmienna to cyfra, dodaje frazę "Wynik działania to"
     if(!isNaN(botmessage)){
     node.innerHTML = ('<b>Cloudy: </b>Wynik działania to: '+botmessage);
     }
@@ -53,13 +53,13 @@ function say(botmessage){
 function birhtday(myBirthday){
   let today, bday, diff, days, age, rok = 0, cage, cloudyDate, switchMonth, maxDaysInMonth;
   today = new Date();
-
   if(myBirthday[1] > 12){
     say("Podałeś niepoprawny miesiąc, rok ma 12 miesięcy");
   }
   else{
     switchMonth = myBirthday[1];
     switch(switchMonth) {
+      case 0: smonth = 'none'; break;
       case 1: smonth = 'Styczeń', maxDaysInMonth = '31'; break;
       case 2: smonth = 'Luty';
               if (myBirthday[2] % 4 == 0 && myBirthday[2] % 100 != 0 || myBirthday[2] % 400 == 0){maxDaysInMonth = '29'; break;}
@@ -79,7 +79,7 @@ function birhtday(myBirthday){
     if(myBirthday[0] > maxDaysInMonth){
       say(smonth + ' ma tylko ' + maxDaysInMonth + ' dni. Wprowadź poprawną datę.')
     }
-    else if(myBirthday[0] < 0 || myBirthday[1] < 0 || myBirthday[2] < 0){
+    else if(myBirthday[0] < 0 || myBirthday[1] < 0 || myBirthday[2] < 0 || smonth == 'none'){
       say("Podałeś błędną datę")
     }
     else{
@@ -143,7 +143,6 @@ let cloudyimg = document.getElementById('cloudyimg');
   cloudyimg.style.backgroundImage = "url('gallery/Angry.png')";
   cloudyimg.style.backgroundImage = "url('gallery/Cloudy.png')";
 
-
 function cloudy(){
     let message = input.value;
     if(message !== ""){
@@ -163,7 +162,7 @@ function cloudy(){
         var MessageArr = message.match(/\S+/gi);
         message = message.replace(comprompt, ""); //usunięcie znaku zachęty ze stringa
         MessageArr[0] = MessageArr[0].replace(comprompt,""); //usunięcie znaku zachęty ze stringa
-        
+        let wynik = 0;
         switch(MessageArr[0]){
           case "hi":
             say(`Witam Cię człowieku, jestem Cloudy. \nWięcej o mnie <button name='command' class='command' onclick="javascript:(input.value = '!cloudy')(input.focus())">!cloudy</button>`);
@@ -184,127 +183,101 @@ function cloudy(){
           case "marta":
             say("thanks");
             break;
-          default: clsinput();;
-        }
-
-        if(MessageArr[0] == 'calc'){
-          say(`Potrafię liczyć! \n <button name='command' class='command' onclick="javascript:(input.value = '!dodaj ')(input.focus())">!dodaj</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!odejmij ')(input.focus())">!odejmij</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!podziel ')(input.focus())">!podziel</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!pomnoz ')(input.focus())">!pomnoz</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!poteguj ')(input.focus())">!poteguj</button> [a] [b] \n <span style='font-size:11px;'>*bez nawiasów kwardatowych</span>`);
-        }
-        else if(MessageArr[0] == 'dodaj'){
-          const wynik = (Number(MessageArr[1])+Number(MessageArr[2]));
-          (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
-        }
-        else if(MessageArr[0] == 'odejmij'){
-          const wynik = (Number(MessageArr[1])-Number(MessageArr[2]));
-          (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
-        }
-        else if(MessageArr[0] == 'podziel'){
-          const wynik = (Number(MessageArr[1])/Number(MessageArr[2]));
-          (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
-        }
-        else if(MessageArr[0] == 'pomnoz'){
-          const wynik = (Number(MessageArr[1])*Number(MessageArr[2]));
-          (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
-        }
-        else if(MessageArr[0] == 'poteguj'){
-          const wynik = Math.pow(Number(MessageArr[1]),Number(MessageArr[2]));
-          (isNaN(MessageArr[1]) ? say(`Podaj mi podstawę potęgi!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi wykładnik potęgi!`) : say(wynik)));
-        }
-
-        else if(MessageArr[0] == 'dzis'){
-          let today = new Date();
-          let date = today.getDate()+'.'+(today.getMonth()+1)+'.'+today.getFullYear();
-          let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-          let dateTime = date+' godzina: '+time;
-          say("Dziś jest: "+dateTime);
-        }
-
-        else if(MessageArr[0] == 'swieta'){
-          let today = new Date();
-          if (today.getMonth() == 11 && today.getDate() > 25){
-            today.setFullYear(today.getFullYear() + 1);
-          }
-          let christmasDate = new Date(today.getFullYear(), 11, 25);
-          diff = christmasDate.getTime()-today.getTime();
-          days = Math.floor(diff/(1000*60*60*24)+1);
-            if(days == 0){
-              say("Wesołych Świąt!");
+            // Calculator
+          case "calc":
+            say(`Potrafię liczyć! \n <button name='command' class='command' onclick="javascript:(input.value = '!dodaj ')(input.focus())">!dodaj</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!odejmij ')(input.focus())">!odejmij</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!podziel ')(input.focus())">!podziel</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!pomnoz ')(input.focus())">!pomnoz</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!poteguj ')(input.focus())">!poteguj</button> [a] [b] \n <span style='font-size:11px;'>*bez nawiasów kwardatowych</span>`);
+            break;
+          case "dodaj":
+            wynik = (Number(MessageArr[1])+Number(MessageArr[2]));
+            (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
+            break;
+          case "odejmij":
+            wynik = (Number(MessageArr[1])-Number(MessageArr[2]));
+            (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
+            break;
+          case "podziel":
+            wynik = (Number(MessageArr[1])/Number(MessageArr[2]));
+            (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
+            break;
+          case "pomnoz":
+            wynik = (Number(MessageArr[1])*Number(MessageArr[2]));
+            (isNaN(MessageArr[1]) ? say(`Podaj mi liczbę!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi drugą liczbę!`) : say(wynik)));
+            break;
+          case "poteguj":
+            wynik = Math.pow(Number(MessageArr[1]),Number(MessageArr[2]));
+            (isNaN(MessageArr[1]) ? say(`Podaj mi podstawę potęgi!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi wykładnik potęgi!`) : say(wynik)));
+            break;
+            // Dates
+          case "dzis":
+            let today = new Date();
+            let date = today.getDate()+'.'+(today.getMonth()+1)+'.'+today.getFullYear();
+            let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            let dateTime = date+' godzina: '+time;
+            say("Dziś jest: "+dateTime);
+            break;
+          case "swieta":
+            let stoday = new Date();
+            if (stoday.getMonth() == 11 && stoday.getDate() > 25){
+              stoday.setFullYear(stoday.getFullYear() + 1);
             }
-            else{
-              say("Zostało " + days + " dni do swiąt.");
-            }
-        }
-
-        else if(MessageArr[0] == 'bday'){
-          if(MessageArr.length == 1){
-            say("Podaj dzień i miesiąc lub pełną datę\n<span style='font-size:11px;'><b>Przyjmowane formaty daty:</b>\nDD.MM.RRRR\nDD-MM-RRRR\nDD MM RRRR\n*rok nie jest wymagany</span>");
-            input.focus();
-          }
-          else{
-            if(MessageArr[1] == 'cloudy'){
-              birhtday('cloudy');
-            }
-            else if(MessageArr.length == 2 && MessageArr[1].length < 3){
-              say("Nie jestem w stanie obliczyć ilości dni do twoich urodzin jeśli podasz mi tylko jeden argument");
-            }
-            else{
-              let myBirthday = new Array;
-              let index;
-                  if(MessageArr[1].includes('.')){
-                    index = MessageArr[1].indexOf('.');
-                  }
-                  else{
-                    index = MessageArr[1].indexOf('-')
-                  }
-              if(MessageArr.length == 2 && (MessageArr[1].includes('.') || MessageArr[1].includes('-'))){
-                
-                if(MessageArr[1].length == 3){
-                  myBirthday = [Number(MessageArr[1].substr(0,1)), Number(MessageArr[1].substr(2,1))]; // dzień / miesiąc
-                  birhtday(myBirthday);
-                }
-                else if(MessageArr[1].length == 4){
-                  if(index == 1){
-                    myBirthday = [Number(MessageArr[1].substr(0,index)), Number(MessageArr[1].substr(index+1,index+1))]; // dzień / miesiąc
-                  }
-                  else if(index == 2){
-                    myBirthday = [Number(MessageArr[1].substr(0,index)), Number(MessageArr[1].substr(index+1))]; // dzień / miesiąc
-                  }
-                  birhtday(myBirthday);
-                }
-                else if(MessageArr[1].length == 5){
-                  myBirthday = [Number(MessageArr[1].substr(0,2)), Number(MessageArr[1].substr(3,2))]; // dzień / miesiąc
-                  birhtday(myBirthday);
-                }
-                else{
-                  myBirthday = [Number(MessageArr[1].substr(0,2)), Number(MessageArr[1].substr(3,2)), Number(MessageArr[1].substr(6,4))]; // dzień / miesiąc / rok
-                  birhtday(myBirthday);
-                }
-              }
-              else if(MessageArr.length == 3){
-                if(MessageArr[1].includes('.') || MessageArr[1].includes('-')){
-                  myBirthday = [Number(MessageArr[1].substr(0,2)), Number(MessageArr[1].substr(3,2)), Number(MessageArr[2])]; // dzień / miesiąc / rok
-                  birhtday(myBirthday);
-                }
-                else{
-                  myBirthday = [Number(MessageArr[1]), Number(MessageArr[2].substr(0,2)), Number(MessageArr[2].substr(3,4))]; // dzień / miesiąc / rok
-                  birhtday(myBirthday);
-                }
+            let christmasDate = new Date(stoday.getFullYear(), 11, 25);
+            diff = christmasDate.getTime()-stoday.getTime();
+            days = Math.floor(diff/(1000*60*60*24)+1);
+              if(days == 0){
+                say("Wesołych Świąt!");
               }
               else{
-                if(MessageArr.length == 4){
-                  myBirthday = [Number(MessageArr[1]), Number(MessageArr[2]), Number(MessageArr[3])]; // dzień / miesiąc / rok
-                  birhtday(myBirthday);
+                say("Zostało " + days + " dni do swiąt.");
+              }
+            break;
+            // Birthday
+          case "bday":
+            if(MessageArr.length == 1){
+              say("Podaj dzień i miesiąc lub pełną datę\n<span style='font-size:11px;'><b>Przyjmowane formaty daty:</b>\nDD.MM.RRRR\nDD-MM-RRRR\nDD MM RRRR\n*rok nie jest wymagany</span>");
+              input.focus();
+            }
+            else{
+              var indices = [];
+              if(MessageArr[1] == 'cloudy'){
+                birhtday('cloudy');
+              }
+              else{
+                let birthdayDate = MessageArr.slice(1).join(' ');
+                let bdayLen = birthdayDate.length;
+                let myBirthday = new Array;
+                let str = birthdayDate;
+                if(bdayLen > 10){
+                  say(`Podałeś złą datę, sprawdź jej poprawność:\n<span style='font-size:11px;'><b>Przyjmowane formaty daty:</b>\nDD.MM.RRRR\nDD-MM-RRRR\nDD MM RRRR\n*rok nie jest wymagany</span>`);
+                }
+                else if(birthdayDate.includes('.') || birthdayDate.includes('-') || birthdayDate.includes(' ')){
+                  for(var i=0; i<str.length;i++){
+                      if (str[i] === '.' || str[i] === '-' || str[i] === ' ') indices.push(i);
+                  }
+                  birthdayDate = birthdayDate.replaceAll('.','').replaceAll('-','').replaceAll(' ','');
+                  if(bdayLen < 6){
+                    myBirthday = [Number(birthdayDate.substr(0,indices[0])), Number(birthdayDate.substr(indices[0],2))]; // dzień / miesiąc
+                      birhtday(myBirthday);
+                      // say('short date: '+myBirthday);
+                  }
+                  else if((indices[1] == 3 && birthdayDate.length > 6) || ((indices[0] == 2 || indices [0] == 1) && indices[1] == 4 && birthdayDate.length > 7)){
+                    say(`Podałeś złą datę, sprawdź jej poprawność:\n<span style='font-size:11px;'><b>Przyjmowane formaty daty:</b>\nDD.MM.RRRR\nDD-MM-RRRR\nDD MM RRRR\n*rok nie jest wymagany</span>`);
+                  }
+                  else{
+                    let num = 2;
+                    if(indices[1] == 3 || (indices[0] == 2 && indices[1] == 4)){num = (num - 1)};
+                    myBirthday = [Number(birthdayDate.substr(0,indices[0])), Number(birthdayDate.substr(indices[0],num)), Number(birthdayDate.substr(indices[1]-1,4))]; // dzień / miesiąc / rok
+                      birhtday(myBirthday);
+                      // say('long date: '+myBirthday);
+                  }
+                      // say('check indices: '+indices);
                 }
                 else{
-                  myBirthday = [Number(MessageArr[1]), Number(MessageArr[2])]; // dzień / miesiąc
-                  birhtday(myBirthday);
+                  say(`Podałeś złą datę, sprawdź jej poprawność:\n<span style='font-size:11px;'><b>Przyjmowane formaty daty:</b>\nDD.MM.RRRR\nDD-MM-RRRR\nDD MM RRRR\n*rok nie jest wymagany</span>`);
                 }
               }
             }
-          }
-        }
-        else{
-          clsinput();
+            break;
+          default: clsinput();;
         }
       }
       else{
