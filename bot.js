@@ -26,6 +26,9 @@ function clsinput(){
   input.value = "";
   myDiv.scrollTop = myDiv.scrollHeight; //scroll w dół
 }
+function clear(){
+  document.getElementById('row').innerHTML = '<p></p>'
+}
 
 function say(botmessage){
   const para = document.createElement('p');
@@ -140,8 +143,6 @@ const comprompt = "!"; // znak zachęty
 let disable = false;
 
 let cloudyimg = document.getElementById('cloudyimg');
-  cloudyimg.style.backgroundImage = "url('gallery/Angry.png')";
-  cloudyimg.style.backgroundImage = "url('gallery/Cloudy.png')";
 
 function cloudy(){
     let message = input.value;
@@ -177,7 +178,7 @@ function cloudy(){
             (MessageArr[1] == 'rick' ? opegg("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "popup", "fullscreen") : (MessageArr[1] == 'mateusz' ? opegg("https://www.youtube.com/watch?v=NSD_TfnWttI", "popup", "fullscreen") : window.open(MessageArr[1], '_blank').focus(), clsinput()));
             break;
           case "clear":
-            document.getElementById('row').innerHTML = '<p></p>';
+            clear()
             clsinput();
             break;
           case "marta":

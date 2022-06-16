@@ -153,3 +153,5 @@ var bannable = new Array('badword','nigger','chuj','chuja', 'chujek', 'chuju', '
 'zapierniczający', 'zasrać', 'zasranym', 'zasrywać', 'zasrywający',
 'zesrywać', 'zesrywający', 'zjebać', 'zjebac', 'zjebał', 'zjebal',
 'zjebała', 'zjebala', 'zjebana','zjebany', 'zjebią', 'zjebali', 'zjeby');
+
+
