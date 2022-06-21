@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
 
-/* :root{
+:root{
   --primary: #6A70D9;
   --secondary: #4E54C8;
   --accent: #BFC1EB;
@@ -9,7 +9,7 @@
 
   --wh-bg: rgba(255, 255, 255, 0.1);
   --site-bg: #183459;
-} */
+}
 
 .darkmode{
   background: black;
@@ -156,7 +156,7 @@ span .command{
 }
 
 /* BACKGROUND */
-/* 
+
 @keyframes animate {
   0%{
       transform: translateY(0) rotate(0deg);
@@ -261,7 +261,7 @@ span .command{
   height: 104px;
   bottom: -104px;
   animation-delay: 11s;
-} */
+}
 
 .shape {
 	position: absolute;
