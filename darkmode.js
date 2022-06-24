@@ -15,14 +15,8 @@ function getValue (elem, property) {
     return window.getComputedStyle(elem, null).getPropertyValue(property);
 }
 
-function moon(){
-    let currentClass = icon.className;
-    if (currentClass.includes('fa-solid')){
-        icon.classList.replace('fa-solid','fa-regular');
-    }
-    else if(currentClass.includes('fa-regular')){
-        icon.classList.replace('fa-regular','fa-solid');
-    }
+function moonTimeout(){
+    darkmode.removeAttribute('disabled','');
 }
 
 function change(){
@@ -42,7 +36,17 @@ function change(){
         if (color == newColor) {
             elem.style.color = oldColor;
         }
-    moon();
+
+        //moon
+        let currentClass = icon.className;
+        if (currentClass.includes('fa-solid')){
+            icon.classList.replace('fa-solid','fa-regular');
+            darkmode.setAttribute('disabled','');
+            setTimeout(moonTimeout, 500);
+        }
+        else if(currentClass.includes('fa-regular')){
+            icon.classList.replace('fa-regular','fa-solid');
+        }
     });
     temp = oldColor;
     oldColor = newColor;

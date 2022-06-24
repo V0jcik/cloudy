@@ -13,20 +13,33 @@
   <nav class="navbar navbar-expand-lg darkmode">
     <div class="container-fluid">
       <a class="navbar-brand" href="gallery/eo2.png">Cloudy</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around" 
+      type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+      aria-expanded="false" aria-label="Toggle navigation">
+        <span class="toggler-icon top-bar"></span>
+        <span class="toggler-icon middle-bar"></span>
+        <span class="toggler-icon bottom-bar"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-          <a class="nav-link" href="#">Features</a>
-          <a class="nav-link" href="#">Pricing</a>
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          <button class="nav-link" id="darkmode" onclick="chcolor()"><i id="icon" class="fa-regular fa-moon fa-xl"></i></button>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+          <a class="navbar-brand" id="darkmode" onclick="chcolor()"><i id="icon" class="fa-regular fa-moon"></i></a>
         </div>
       </div>
     </div>
   </nav>
+  
   <div class="container-fluid">
     <div class="row">
       <div class="col darkmode">

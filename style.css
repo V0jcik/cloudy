@@ -210,6 +210,11 @@ span .command{
 .fa-regular, .fa-solid {
   color: gold;
   font-size: 2em;
+  margin-top: -3px;
+}
+.css-toggler{
+  color: gold;
+  background-color: red;
 }
 .fa-regular {
   text-shadow: 0 0.08em 0.1em  rgba(255, 217, 0, 0.459);
@@ -221,4 +226,81 @@ span .command{
 #darkmode {
   background-color: transparent;
   border: none;
+}
+
+/* V Menu toggler */
+
+.navbar-toggler {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transition: .5s ease-in-out;
+}
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
+  border: 0;
+}
+.navbar-toggler span {
+  margin: 0;
+  padding: 0;
+}
+.toggler-icon {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: gold;
+  border-radius: 1px;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.middle-bar {
+  margin-top: 0px;
+}
+
+
+/* V Menu toggler */
+
+.navbar-toggler .top-bar {
+  margin-top: -20px;
+  transform-origin: top left;
+  transform: rotate(70deg);
+  left: 5.5px;
+}
+
+.navbar-toggler .middle-bar {
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.navbar-toggler .bottom-bar {
+  margin-top: -20px;
+  transform-origin: top right;
+  transform: rotate(-70deg);
+  left: -5.5px;
+}
+
+/* V Menu toggler collapsed */
+
+.navbar-toggler.collapsed .top-bar {
+  margin-top: -20px;
+  left:2px;
+  transform: rotate(0deg);
+}
+
+.navbar-toggler.collapsed .middle-bar {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+.navbar-toggler.collapsed .bottom-bar {
+  margin-top: 20px;
+  left:5px;
+  transform: rotate(0deg);
 }
