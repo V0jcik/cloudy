@@ -46,6 +46,8 @@ function change(){
         }
         else if(currentClass.includes('fa-regular')){
             icon.classList.replace('fa-regular','fa-solid');
+            darkmode.setAttribute('disabled','');
+            setTimeout(moonTimeout, 500);
         }
     });
     temp = oldColor;

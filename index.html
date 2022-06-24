@@ -1,82 +1,78 @@
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="gallery/Cloudy.png">
-  <script src="https://kit.fontawesome.com/b9a7ea0ec0.js" crossorigin="anonymous"></script>
-  <title>Cloudy</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+    *{
+      font-family: 'Roboto Mono', monospace;
+      text-shadow: 0 0.08em 0.1em  rgba(0, 0, 0, 0.459);
+    }
+    body{
+      color: gold;
+      font-size: 4em;
+    }
+    .center{
+      z-index: 0;
+      text-align: center;
+      width: 100%;
+      height: 200px;
+      margin: 200px auto;
+    }
+    .center span{
+      font-weight: 550;
+    }
+    .center i{
+      opacity: 75%;
+      margin-top: -20px;
+      font-size: 55%;
+    }
+    .center p{
+      margin-top: -10px;
+      position: relative;
+      right: -200px;
+      font-size: 30%;
+      color: rgba(128, 128, 128, 0.87);
+    }
+    .bloom{
+      z-index: -1;
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      width: 90%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 1000px 20px gold;
+    }
+    button{
+      cursor: pointer;
+    }
+    .darkmode {
+      transition: 0.5s;
+      background-color: rgb(24, 25, 26);
+      border: rgb(24, 25, 26);
+    }
+    .fa-regular, .fa-solid {
+      color: gold;
+      font-size: 2em;
+    }
+    .fa-regular {
+      text-shadow: 0 0.08em 0.1em  rgba(0, 0, 0, 0.459);
+    }
+    .fa-solid {
+      text-shadow: 0 0.08em 0.1em  rgba(0, 0, 0, 0.459);
+    }
+    #darkmode {
+      background-color: transparent;
+      border: none;
+    }
+  </style>
 </head>
 <body class="darkmode">
-  <nav class="navbar navbar-expand-lg darkmode">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="gallery/eo2.png">Cloudy</a>
-      <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around" 
-      type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-      aria-expanded="false" aria-label="Toggle navigation">
-        <span class="toggler-icon top-bar"></span>
-        <span class="toggler-icon middle-bar"></span>
-        <span class="toggler-icon bottom-bar"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-          <button class="navbar-brand" id="darkmode" onclick="chcolor()"><i id="icon" class="fa-regular fa-moon"></i></button>
-        </div>
-      </div>
-    </div>
-  </nav>
-  
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col darkmode">
-        <img src="gallery/eo2.png">
-      </div>
-      <div class="col darkmode">
-        <div class="bg my-5">
-          <span class="h3">Chat</span>
-            <div class="chat col-12 my-2" id="chat">
-              <div class="row" id="row">
-                <p></p>
-              </div>
-            </div>
-            <div class="row">
-                <div class="input-group">
-                  <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" id="name" autocomplete="off" class="col-12" onfocus="this.setSelectionRange(this.value.length, this.value.length);">
-                  <button type="button" class="btn btn-outline-secondary" id="button" onclick="validate_text()">Enter</button>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
+  <button id="darkmode" onclick="chcolor()"><i id="icon" class="fa-regular fa-moon"></i></button>
+  <div class="bloom"></div>
+  <div class="center">
+    <span>Strona w przebudowie</span><br>
+    <p>Website under construction</p>
+    <i>Stay tuned! </i>
   </div>
-  <footer class="py-3 my-4 darkmode">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
-      <li class="nav-item"><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
-      <li class="nav-item"><a href="https://youtube.com"><i class="fab fa-youtube"></i></a></li>
-      <li class="nav-item"><a href="https://github.com"><i class="fab fa-github"></i></a></li>
-      <li class="nav-item"><a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a></li>
-    </ul>
-    <p class="text-center text-muted">© Vojcik</p>
-  </footer>
 </body>
-</html>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="js/bootstrap.js"></script>
-<script src="bot.js"></script>
-<script src="ban.js"></script>
 <script src="darkmode.js"></script>
+<script src="https://kit.fontawesome.com/b9a7ea0ec0.js" crossorigin="anonymous"></script>
