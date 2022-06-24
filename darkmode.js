@@ -1,24 +1,50 @@
 var darkmode = document.getElementById('darkmode');
 var icon = document.getElementById('icon');
 darkmode.addEventListener("mouseover", function(event){
-  // highlight the mouseover target
-  icon.classList.replace('fa-solid','fa-regular');
-}, false);
-darkmode.addEventListener("mouseout", function(event){
-  // highlight the mouseover target
-  icon.classList.replace('fa-regular','fa-solid');
-}, false);
+    //do something
+});
 
-var dark = true;
-var dmodes = document.getElementsByClassName("darkmode");
+darkmode.addEventListener('click', change)
 
-function chcolor(){
-  if(dark == true){
-    dmodes.setAttribute('style','background: white !important; color: black;');
-    dark = false;
-  }
-  else{
-    dmodes.setAttribute('style','background: black !important; color: white;');
-    dark = true;
-  }
-};
+var elems = document.getElementsByClassName("darkmode");
+    let oldColor = "rgb(24, 25, 26)";
+    let temp = "";
+    let newColor = "rgb(255, 253, 250)";
+
+function getValue (elem, property) {
+    return window.getComputedStyle(elem, null).getPropertyValue(property);
+}
+
+function moon(){
+    let currentClass = icon.className;
+    if (currentClass.includes('fa-solid')){
+        icon.classList.replace('fa-solid','fa-regular');
+    }
+    else if(currentClass.includes('fa-regular')){
+        icon.classList.replace('fa-regular','fa-solid');
+    }
+}
+
+function change(){
+    Array.prototype.forEach.call(elems, function (elem) {
+        var backgroundColor = getValue(elem, "background-color"),
+            borderColor = getValue(elem, "border-color"),
+            color = getValue(elem, "color");
+    
+        if (backgroundColor == oldColor) {
+            elem.style.backgroundColor = newColor;
+        }
+    
+        if (borderColor == oldColor) {
+            elem.style.borderColor = newColor;
+        }
+    
+        if (color == newColor) {
+            elem.style.color = oldColor;
+        }
+    moon();
+    });
+    temp = oldColor;
+    oldColor = newColor;
+    newColor = temp;
+}
