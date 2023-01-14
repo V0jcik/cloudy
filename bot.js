@@ -49,9 +49,6 @@ async function say(botmessage){
     if(!isNaN(botmessage)){
     node.innerHTML = ('<b>Cloudy: </b>Wynik działania to: '+botmessage);
     }
-    else if(botmessage == "thanks"){
-      node.innerHTML = ('<b>Vojcik: </b>Marta, dzięki niej Cloudy otrzymał twarz. Jestem bardzo wdzięczny za pomoc.');
-    }
     else{
     node.innerHTML = ('<b>Cloudy: </b>'+botmessage);
     }
