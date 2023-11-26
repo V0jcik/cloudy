@@ -184,14 +184,11 @@ function cloudy(){
             say(`Dostępne komendy: \n<button name='command' class='command' onclick="javascript:(input.value = '!hi')(input.focus())">!hi</button> | <button name='command' class='command' onclick="javascript:(input.value = '!cloudy')(input.focus())">!cloudy</button> | <button name='command' class='command' onclick="javascript:(input.value = '!clear')(input.focus())">!clear</button> | <button name='command' class='command' onclick="javascript:(input.value = '!calc')(input.focus())">!calc</button> | <button name='command' class='command' onclick="javascript:(input.value = '!dzis')(input.focus())">!dzis</button> | <button name='command' class='command' onclick="javascript:(input.value = '!swieta')(input.focus())">!swieta</button> | <button name='command' class='command' onclick="javascript:(input.value = '!bday')(input.focus())">!bday</button>`);
             break;
           case "go":
-            (MessageArr[1] == 'rick' ? opegg("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "popup", "fullscreen") : (MessageArr[1] == 'mateusz' ? opegg("https://www.youtube.com/watch?v=NSD_TfnWttI", "popup", "fullscreen") : window.open(MessageArr[1], '_blank').focus(), clsinput()));
+            (MessageArr[1] == 'rick' ? opegg("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "popup", "fullscreen") : window.open(MessageArr[1], '_blank').focus(), clsinput());
             break;
           case "clear":
             clear()
             clsinput();
-            break;
-          case "marta":
-            say("thanks");
             break;
             // Calculator
           case "calc":
