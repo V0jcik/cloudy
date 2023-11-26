@@ -1,6 +1,6 @@
 # Cloudy
-## Projekt prostego Chatbota odpowiadającego na komendy powstały 26.07.2021 w języku JavaScript.
-
+### Projekt prostego chatbota odpowiadającego na komendy w języku JavaScript.
+*26.07.2021*
 ### Lista dostępnych komend:
 - ```!hi``` - bot przywita się
 - ```!cloudy``` - bot przedstawi swoją krótką historię
