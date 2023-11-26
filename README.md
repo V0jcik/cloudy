@@ -5,7 +5,7 @@
 - ```!hi``` - bot przywita się
 - ```!cloudy``` - bot przedstawi swoją krótką historię
 - ```!help``` - lista dostępnych komend
-- ```!go [link / lub słowo klucz "rick"]``` - otwiera link w nowym oknie na fullscreenie
+- ```!go [link / lub słowo klucz "rick"]``` - otwarcie linku w nowym oknie na fullscreenie
 - ```!clear``` - wyczyszczenie okna czatu
 - ```!dzis``` - podanie dzisiejszej daty
 - ```!swieta``` - ilość dni do świąt Bożego Narodzenia
@@ -19,7 +19,7 @@
 
 ### Kalkulator dni do następnych urodzin
 > [!IMPORTANT]
-> Jest to najbardziej rozwinięta komenda. Obsługuje walidację poprawności wprowadzonej daty jak i obsługuje rok przestepny.
+> Jest to najbardziej rozwinięta komenda. Obsługuje walidację poprawności wprowadzonej daty jak i lata przestepne.
 - ```!bday``` - bot wyświetla informację jak skorzystać z komendy
 
 - ```!bday [ DD.MM.RRRR, DD-MM-RRRR, DD MM RRRR ]```  -  obliczy ilość dni oraz poda które to będą urodziny z kolei
