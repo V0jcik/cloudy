@@ -1,22 +1,23 @@
 let lastMess = "";
+// obsługa kliknięcia przycisku ENTER
 document.getElementById('name').addEventListener('keyup', function(event){
   if (event.code === 'Enter'){
     event.preventDefault();
-    // validate_text();
+    // walidacja wiadomości w poszukiwaniu zabronionych słów
     validate_text();
   }
   else if (event.code === 'ArrowUp'){
     event.preventDefault();
-      // up arrow
+      // ostatnia wprowadzona komenda / wiadomość po kliknięciu strzałki w górę
       input.value = lastMess;
     }
   else if (event.code === 'ArrowDown'){
     event.preventDefault();
-      // down arrow
+      // wyczyszczenie inputu po kliknięciu strzałki w dół
       input.value = "";
     }
 });
-
+// obsługa automatycznego wprowadzania komend do inputu po kliknięciu ich na wysłanej przez Cloudiego liście.
 var commands = document.getElementsByName('command');
 for (var i = 0; i < commands.length; i++) {
   commands[i].addEventListener('click', function(){document.getElementById('input').focus()});
@@ -28,12 +29,12 @@ function clsinput(){
   myDiv.scrollTop = myDiv.scrollHeight; //scroll w dół
 }
 
-//utworzenie nowego (niewidocznego) dymka do któego zostanie wprowadzona odpowiedź Cloudiego
+// utworzenie nowego (niewidocznego) dymka do którego zostanie wprowadzona odpowiedź Cloudiego
 function clear(){
   document.getElementById('row').innerHTML = '<p></p>'
 }
 
-
+// randomowy delay by zasymulować chwilę zastanowienia u Cloudiego
 function randomdelay(){
     min = 200;
     max = 500;
@@ -47,19 +48,20 @@ async function say(botmessage){
   const space = document.createElement('div');
   let node = document.createElement('span');
   
-  await randomdelay(); //randomowy czas oczekiwania na odpowiedź
+  await randomdelay(); // randomowy czas oczekiwania na odpowiedź
 
-    //Jeśli przekazana zmienna to cyfra, dodaje frazę "Wynik działania to"
+    // jeśli przekazana zmienna to cyfra, dodaje frazę "Wynik działania to"
     if(!isNaN(botmessage)){
     node.innerHTML = ('<b>Cloudy: </b>Wynik działania to: '+botmessage);
     }
-    //Jeśli przekazana zmienna nie jest cyfrą, Cloudy odpowiada
+    // jeśli przekazana zmienna nie jest cyfrą, Cloudy odpowiada
     else{
     node.innerHTML = ('<b>Cloudy: </b>'+botmessage);
     }
-
+    
+    //utworzenie nowego dymka z wiadomością Cloudiego
     para.appendChild(node);
-      const element = document.getElementById('row'); //utworzenie nowego dymka z wiadomością Cloudiego
+      const element = document.getElementById('row'); 
       element.appendChild(para);
       element.appendChild(space);
         para.classList.add('botmess');
@@ -111,7 +113,7 @@ function birhtday(myBirthday){
         myBirthday = new Array(26, 7, 2021);
         cloudyDate = true;
       }
-          bday = new Date(today.getFullYear(),myBirthday[1]-1,myBirthday[0]); //tworzenie daty następnych urodzin
+          bday = new Date(today.getFullYear(),myBirthday[1]-1,myBirthday[0]); // tworzenie daty następnych urodzin
 
           if( today.getTime() > bday.getTime()) { // jeśli urodziny aktualnego roku już były, przejdź do następnego roku
             bday.setFullYear(bday.getFullYear()+1);
@@ -142,7 +144,7 @@ function birhtday(myBirthday){
   }
 }
 
-function opegg(url){ //otwarcie linku na fullscreenie
+function opegg(url){ // otwarcie linku na fullscreenie
   clsinput()
   var popup = window.open(url, "popup", "fullscreen");
   if (popup.outerWidth < screen.availWidth || popup.outerHeight < screen.availHeight){
@@ -150,7 +152,8 @@ function opegg(url){ //otwarcie linku na fullscreenie
     popup.resizeTo(screen.availWidth, screen.availHeight);
   }
 }
-// Blokada wysyłania wiadomości [starsza wersja filtra]
+
+// blokada wysyłania wiadomości [starsza wersja filtra]
 
 // function bl(){ 
 //   disable = false;
@@ -158,18 +161,17 @@ function opegg(url){ //otwarcie linku na fullscreenie
 //   document.getElementById('name').disabled = false;
 //   say("Jeśli przemyślałeś/aś swoje zachowanie, to witam z powrotem :D");
 // }
+// let disable = false;
+// let cloudyimg = document.getElementById('cloudyimg');
 
 let myDiv = document.getElementById("chat"); // czat 
 const input = document.getElementById('name'); // pole wprowadzania
 const comprompt = "!"; // znak zachęty
 
-// let disable = false;
-// let cloudyimg = document.getElementById('cloudyimg');
-
 function cloudy(){
     let message = input.value; // pobranie inputu
     if(message !== ""){
-      //utworzenie dymka czatu z wprowadzoną wiadomością / komendą
+      // utworzenie dymka czatu z wprowadzoną wiadomością / komendą
       const para = document.createElement("p");
       const space = document.createElement('div');
       let node = document.createElement('span');
@@ -181,10 +183,10 @@ function cloudy(){
       element.appendChild(para);
       clsinput();
       
-      if(message.charAt(0) == comprompt){ //Jeśli wiadomość zaczyna się znakiem zachęty
+      if(message.charAt(0) == comprompt){ // jeśli wiadomość zaczyna się znakiem zachęty
         var MessageArr = message.match(/\S+/gi); // podział komendy na polecenie i zmienne jeśli są wymagane
-        message = message.replace(comprompt, ""); //usunięcie znaku zachęty ze stringa
-        MessageArr[0] = MessageArr[0].replace(comprompt,""); //usunięcie znaku zachęty ze stringa
+        message = message.replace(comprompt, ""); // usunięcie znaku zachęty ze stringa
+        MessageArr[0] = MessageArr[0].replace(comprompt,""); // usunięcie znaku zachęty ze stringa
         let wynik = 0;
         switch(MessageArr[0]){
           case "hi":
@@ -203,7 +205,7 @@ function cloudy(){
             clear()
             clsinput();
             break;
-            // Calculator
+            // calculator
           case "calc":
             say(`Potrafię liczyć! \n <button name='command' class='command' onclick="javascript:(input.value = '!dodaj ')(input.focus())">!dodaj</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!odejmij ')(input.focus())">!odejmij</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!podziel ')(input.focus())">!podziel</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!pomnoz ')(input.focus())">!pomnoz</button> [a] [b] \n <button name='command' class='command' onclick="javascript:(input.value = '!poteguj ')(input.focus())">!poteguj</button> [a] [b] \n <span style='font-size:11px;'>*bez nawiasów kwardatowych</span>`);
             break;
@@ -227,7 +229,7 @@ function cloudy(){
             wynik = Math.pow(Number(MessageArr[1]),Number(MessageArr[2]));
             (isNaN(MessageArr[1]) ? say(`Podaj mi podstawę potęgi!`) : (isNaN(MessageArr[2]) ? say(`Podaj mi wykładnik potęgi!`) : say(wynik)));
             break;
-            // Dates
+            // dates
           case "dzis":
             let today = new Date();
             let date = today.getDate()+'.'+(today.getMonth()+1)+'.'+today.getFullYear();
@@ -250,7 +252,7 @@ function cloudy(){
                 say("Zostało " + days + " dni do swiąt.");
               }
             break;
-            // Birthday
+            // komenda birthday
           case "bday":
             if(MessageArr.length == 1){
               say("Podaj dzień i miesiąc lub pełną datę\n<span style='font-size:11px;'><b>Przyjmowane formaty daty:</b>\nDD.MM.RRRR\nDD-MM-RRRR\nDD MM RRRR\n*rok nie jest wymagany</span>");
@@ -266,18 +268,18 @@ function cloudy(){
                 let bdayLen = birthdayDate.length;
                 let myBirthday = new Array;
                 let str = birthdayDate;
+                // walidacja poprawności wpisanej daty
                 if(bdayLen > 10){
                   say(`Podałeś złą datę, sprawdź jej poprawność:\n<span style='font-size:11px;'><b>Przyjmowane formaty daty:</b>\nDD.MM.RRRR\nDD-MM-RRRR\nDD MM RRRR\n*rok nie jest wymagany</span>`);
                 }
                 else if(birthdayDate.includes('.') || birthdayDate.includes('-') || birthdayDate.includes(' ')){
                   for(var i=0; i<str.length;i++){
-                      if (str[i] === '.' || str[i] === '-' || str[i] === ' ') indices.push(i);
+                      if (str[i] === '.' || str[i] === '-' || str[i] === ' ') indices.push(i); // znalezienie znaków w dacie
                   }
                   birthdayDate = birthdayDate.replaceAll('.','').replaceAll('-','').replaceAll(' ','');
                   if(bdayLen < 6){
                     myBirthday = [Number(birthdayDate.substr(0,indices[0])), Number(birthdayDate.substr(indices[0],2))]; // dzień / miesiąc
                       birhtday(myBirthday);
-                      // say('short date: '+myBirthday);
                   }
                   else if((indices[1] == 3 && birthdayDate.length > 6) || ((indices[0] == 2 || indices [0] == 1) && indices[1] == 4 && birthdayDate.length > 7)){
                     say(`Podałeś złą datę, sprawdź jej poprawność:\n<span style='font-size:11px;'><b>Przyjmowane formaty daty:</b>\nDD.MM.RRRR\nDD-MM-RRRR\nDD MM RRRR\n*rok nie jest wymagany</span>`);
@@ -287,9 +289,7 @@ function cloudy(){
                     if(indices[1] == 3 || (indices[0] == 2 && indices[1] == 4)){num = (num - 1)};
                     myBirthday = [Number(birthdayDate.substr(0,indices[0])), Number(birthdayDate.substr(indices[0],num)), Number(birthdayDate.substr(indices[1]-1,4))]; // dzień / miesiąc / rok
                       birhtday(myBirthday);
-                      // say('long date: '+myBirthday);
                   }
-                      // say('check indices: '+indices);
                 }
                 else{
                   say(`Podałeś złą datę, sprawdź jej poprawność:\n<span style='font-size:11px;'><b>Przyjmowane formaty daty:</b>\nDD.MM.RRRR\nDD-MM-RRRR\nDD MM RRRR\n*rok nie jest wymagany</span>`);
