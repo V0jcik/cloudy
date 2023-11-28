@@ -32,4 +32,4 @@
 Cloudy pamięta ostatnio użytą komendę, wystarczy użyć strzałki w górę by powrócić do ostatnio użytej komendy. Analogicznie strzałka w dół wyczyści pole wprowadzania.
 
 ### Filtr zabronionych słów
-Cloudy ma również zaimplementowany podstawowy filtr słów zabronionych, w przypadku użycia jednego z nich nie pozwala wysłać takowej wiadomości.
+Cloudy ma również zaimplementowany podstawowy [filtr](ban.js) słów zabronionych, w przypadku użycia jednego z nich nie pozwala wysłać takowej wiadomości.
