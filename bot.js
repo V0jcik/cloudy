@@ -23,7 +23,7 @@ for (var i = 0; i < commands.length; i++) {
   commands[i].addEventListener('click', function(){document.getElementById('input').focus()});
 }
 
-// czyszczenie inputu po każdym kliknięciu ENTER i scroll na dół okna czatu
+// czyszczenie inputu po każdym kliknięciu ENTER -> scroll na dół okna czatu
 function clsinput(){
   input.value = "";
   myDiv.scrollTop = myDiv.scrollHeight; //scroll w dół
